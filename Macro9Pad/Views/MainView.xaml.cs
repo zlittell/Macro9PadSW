@@ -13,11 +13,11 @@ using System.Windows.Shapes;
 namespace Macro9Pad.Views
 {
     /// <summary>
-    /// Interaction logic for ShellView.xaml
+    /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class ShellView : Window
+    public partial class MainView : Window
     {
-        public ShellView()
+        public MainView()
         {
             InitializeComponent();
         }

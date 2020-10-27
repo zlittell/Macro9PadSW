@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using Caliburn.Micro;
 using Macro9Pad.ViewModels;
+using Macro9Pad.Views;
 
 namespace Macro9Pad
 {
@@ -21,12 +22,12 @@ namespace Macro9Pad
 
             container.Singleton<IWindowManager, WindowManager>();
 
-            container.PerRequest<ShellViewModel>();
+            container.PerRequest<MainViewModel>();
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor<ShellViewModel>();
+            DisplayRootViewFor<MainViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)

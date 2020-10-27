@@ -7,12 +7,12 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\ShellView.xaml.cs">
+    <Compile Update="Views\MainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\ShellView.xaml">
+    <Page Update="Views\MainView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
