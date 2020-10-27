@@ -46,9 +46,6 @@
     <Resource Include="icons\log-out.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\MechanicalSquidFactory.xaml">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="icons\settings.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
