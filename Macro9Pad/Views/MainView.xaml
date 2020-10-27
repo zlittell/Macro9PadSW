@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Macro9Pad.Views"
         mc:Ignorable="d"
-        Title="MainView" Height="300" Width="300">
+        Title="[MSF] Macro9Pad" Height="300" Width="300" Icon="/icons/cpu.png">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -16,7 +16,7 @@
             <RowDefinition Height="10" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="5*" />
-            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="1*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
@@ -28,37 +28,48 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="0.25*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Column="0" Grid.Row="1">
+            <Grid Grid.Column="0" Grid.Row="2" Margin="0,0,0,3" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0">EEPROM</Button>
-            </Grid>
-            <Grid Grid.Column="1" Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Column="0" Grid.Row="0">
+                    <Image Source="/icons/cpu.png"/>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="2" Grid.ColumnSpan="3" Margin="93,0,93,3" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="3*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <Rectangle Grid.Column="1" Grid.Row="1" Fill="Red"/>
+                <Rectangle Grid.Column="1" Stroke="Black" StrokeThickness="2" Grid.Row="1" Fill="Red"/>
             </Grid>
-            <Grid Grid.Column="2" Grid.Row="1">
+            <Grid Grid.Column="2" Grid.Row="2" Margin="0,0,0,3" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1">LOAD</Button>
-                <Button Grid.Column="2">SAVE</Button>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Column="1" Grid.Row="0">
+                    <Image Source="/icons/log-in.png"/>
+                </Button>
+                <Button Grid.Column="3" Grid.Row="0">
+                    <Image Source="/icons/log-out.png"/>
+                </Button>
             </Grid>
         </Grid>
 
@@ -74,15 +85,15 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <Button Grid.Column="0" Grid.Row="0">Button1</Button>
-            <Button Grid.Column="1" Grid.Row="0">Button2</Button>
-            <Button Grid.Column="2" Grid.Row="0">Button3</Button>
-            <Button Grid.Column="0" Grid.Row="1">Button4</Button>
-            <Button Grid.Column="1" Grid.Row="1">Button5</Button>
-            <Button Grid.Column="2" Grid.Row="1">Button6</Button>
-            <Button Grid.Column="0" Grid.Row="2">Button7</Button>
-            <Button Grid.Column="1" Grid.Row="2">Button8</Button>
-            <Button Grid.Column="2" Grid.Row="2">Button9</Button>
+            <Button Grid.Column="0" Grid.Row="0">ONE</Button>
+            <Button Grid.Column="1" Grid.Row="0">TWO</Button>
+            <Button Grid.Column="2" Grid.Row="0">THREE</Button>
+            <Button Grid.Column="0" Grid.Row="1">FOUR</Button>
+            <Button Grid.Column="1" Grid.Row="1">FIVE</Button>
+            <Button Grid.Column="2" Grid.Row="1">SIX</Button>
+            <Button Grid.Column="0" Grid.Row="2">SEVEN</Button>
+            <Button Grid.Column="1" Grid.Row="2">EIGHT</Button>
+            <Button Grid.Column="2" Grid.Row="2">NINE</Button>
         </Grid>
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -91,10 +102,21 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.25*"/>
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <Button Grid.Column="2" Grid.Row="1">Settings</Button>
+            <Grid Grid.Row="0" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Column="2" Grid.Row="1">
+                    <Image Source="/icons/settings.png"/>
+                </Button>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
