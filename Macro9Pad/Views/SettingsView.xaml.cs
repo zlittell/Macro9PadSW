@@ -3,11 +3,11 @@
 namespace Macro9Pad.Views
 {
     /// <summary>
-    /// Interaction logic for MainView.xaml
+    /// Interaction logic for SettingsView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class SettingsView : Window
     {
-        public MainView()
+        public SettingsView()
         {
             InitializeComponent();
         }

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\zlitt\source\repos\Macro9Pad\Macro9Pad\App.xaml
-11811751144
+41075655286
 
-61974730046
+161500719003
 2021289862423
-Views\MainView.xaml;
+Views\ButtonEditView.xaml;Views\MainView.xaml;Views\RGBColorView.xaml;Views\SettingsView.xaml;
 
 True
 

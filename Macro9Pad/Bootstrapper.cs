@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
+using Macro9Pad.Models;
 using Macro9Pad.ViewModels;
-using Macro9Pad.Views;
 
 namespace Macro9Pad
 {
@@ -13,36 +14,48 @@ namespace Macro9Pad
 
         public Bootstrapper()
         {
-            Initialize();
+            this.Initialize();
         }
 
         protected override void Configure()
         {
-            container = new SimpleContainer();
+            this.container = new SimpleContainer();
 
-            container.Singleton<IWindowManager, WindowManager>();
+            this.container
+                .Singleton<IWindowManager, WindowManager>()
+                .Singleton<DeviceModel>();
 
-            container.PerRequest<MainViewModel>();
+            // Instantiate any singletons ahead of time
+            this.container.GetInstance<DeviceModel>();
+
+
+            // Register all viewmodels with container
+            this.GetType().Assembly.GetTypes()
+                .Where(type => type.IsClass)
+                .Where(type => type.Name.EndsWith("ViewModel", StringComparison.InvariantCulture))
+                .ToList()
+                .ForEach(viewModelType => this.container.RegisterPerRequest(
+                    viewModelType, viewModelType.ToString(), viewModelType));
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor<MainViewModel>();
+            this.DisplayRootViewFor<MainViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)
         {
-            return container.GetInstance(service, key);
+            return this.container.GetInstance(service, key);
         }
 
         protected override IEnumerable<object> GetAllInstances(Type service)
         {
-            return container.GetAllInstances(service);
+            return this.container.GetAllInstances(service);
         }
 
         protected override void BuildUp(object instance)
         {
-            container.BuildUp(instance);
+            this.container.BuildUp(instance);
         }
     }
 }

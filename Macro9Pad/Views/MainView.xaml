@@ -4,8 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Macro9Pad.Views"
+        xmlns:converters="clr-namespace:Macro9Pad.Helpers"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         Title="[MSF] Macro9Pad" Height="300" Width="300" Icon="/icons/cpu.png">
+
+    <Window.Resources>
+        <converters:RGBToBrushConverter x:Key="RGBToBrushConverter"/>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -42,6 +50,11 @@
                     <Button.ToolTip>
                         <ToolTip Content="Write profile to EEPROM"/>
                     </Button.ToolTip>
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="Click">
+                            <cal:ActionMessage MethodName="StoreProfile"/>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
                 </Button>
             </Grid>
             <Grid Grid.Row="2" Grid.ColumnSpan="3" Margin="93,0,93,3" Grid.RowSpan="2">
@@ -55,7 +68,14 @@
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <Rectangle Grid.Column="1" Stroke="Black" StrokeThickness="2" Grid.Row="1" Fill="Red" ToolTip="Change RGB LED Color"/>
+                <Rectangle Grid.Column="1" Grid.Row="1">
+                    <Rectangle.Stroke>Black</Rectangle.Stroke>
+                    <Rectangle.StrokeThickness>2</Rectangle.StrokeThickness>
+                    <Rectangle.ToolTip>Change RGB LED Color</Rectangle.ToolTip>
+                    <Rectangle.Fill>
+                        <Binding Converter="{StaticResource RGBToBrushConverter}" Path="Device.RGB" Mode="OneWay"/>
+                    </Rectangle.Fill>
+                </Rectangle>
             </Grid>
             <Grid Grid.Column="2" Grid.Row="2" Margin="0,0,0,3" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
@@ -72,12 +92,22 @@
                     <Button.ToolTip>
                         <ToolTip Content="Load Profile"/>
                     </Button.ToolTip>
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="Click">
+                            <cal:ActionMessage MethodName="LoadProfile"/>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
                 </Button>
                 <Button Grid.Column="3" Grid.Row="0">
                     <Image Source="/icons/log-out.png"/>
                     <Button.ToolTip>
                         <ToolTip Content="Save Profile"/>
                     </Button.ToolTip>
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="Click">
+                            <cal:ActionMessage MethodName="SaveProfile"/>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
                 </Button>
             </Grid>
         </Grid>
@@ -94,15 +124,87 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <Button Grid.Column="0" Grid.Row="0">ONE</Button>
-            <Button Grid.Column="1" Grid.Row="0">TWO</Button>
-            <Button Grid.Column="2" Grid.Row="0">THREE</Button>
-            <Button Grid.Column="0" Grid.Row="1">FOUR</Button>
-            <Button Grid.Column="1" Grid.Row="1">FIVE</Button>
-            <Button Grid.Column="2" Grid.Row="1">SIX</Button>
-            <Button Grid.Column="0" Grid.Row="2">SEVEN</Button>
-            <Button Grid.Column="1" Grid.Row="2">EIGHT</Button>
-            <Button Grid.Column="2" Grid.Row="2">NINE</Button>
+            <Button Grid.Column="0" Grid.Row="0" Content="ONE">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ButtonEdit">
+                            <cal:Parameter Value="1"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </Button>
+            <Button Grid.Column="1" Grid.Row="0" Content="TWO">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ButtonEdit">
+                            <cal:Parameter Value="2"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </Button>
+            <Button Grid.Column="2" Grid.Row="0" Content="THREE">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ButtonEdit">
+                            <cal:Parameter Value="3"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </Button>
+            <Button Grid.Column="0" Grid.Row="1" Content="FOUR">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ButtonEdit">
+                            <cal:Parameter Value="4"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </Button>
+            <Button Grid.Column="1" Grid.Row="1" Content="FIVE">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ButtonEdit">
+                            <cal:Parameter Value="5"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </Button>
+            <Button Grid.Column="2" Grid.Row="1" Content="SIX">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ButtonEdit">
+                            <cal:Parameter Value="6"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </Button>
+            <Button Grid.Column="0" Grid.Row="2" Content="SEVEN">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ButtonEdit">
+                            <cal:Parameter Value="7"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </Button>
+            <Button Grid.Column="1" Grid.Row="2" Content="EIGHT">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ButtonEdit">
+                            <cal:Parameter Value="8"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </Button>
+            <Button Grid.Column="2" Grid.Row="2" Content="NINE">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ButtonEdit">
+                            <cal:Parameter Value="9"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </Button>
         </Grid>
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -124,6 +226,11 @@
                 </Grid.RowDefinitions>
                 <Button Grid.Column="2" Grid.Row="1">
                     <Image Source="/icons/settings.png"/>
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="Click">
+                            <cal:ActionMessage MethodName="EditSettings"/>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
                 </Button>
             </Grid>
         </Grid>

@@ -12,6 +12,7 @@
     <None Remove="icons\log-in.png" />
     <None Remove="icons\log-out.png" />
     <None Remove="icons\open.png" />
+    <None Remove="icons\refresh-ccw.png" />
     <None Remove="icons\save.png" />
     <None Remove="icons\settings.png" />
   </ItemGroup>
@@ -44,6 +45,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\log-out.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\refresh-ccw.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\settings.png">
