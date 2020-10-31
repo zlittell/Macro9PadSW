@@ -34,30 +34,33 @@
             <Rectangle.Stroke>Black</Rectangle.Stroke>
             <Rectangle.StrokeThickness>2</Rectangle.StrokeThickness>
             <Rectangle.Fill>
-                <Binding Converter="{StaticResource RGBToBrushConverter}" Path="rgbEdit" Mode="OneWay"/>
+                <Binding Converter="{StaticResource RGBToBrushConverter}" Path="RGBEdit" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
             </Rectangle.Fill>
         </Rectangle>
-        
-        <Slider Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Value="{Binding Path=rgbEdit.Red}" Minimum="0"
-                Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True" Background="Red"/>
-        <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Path=rgbEdit.Red, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-            StringFormat={}{0:000}}" MaxLength="3"/>
-        
-        <Slider Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Value="{Binding Path=rgbEdit.Green}" Minimum="0"
-                Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True" Background="Green"/>
-        <TextBox Grid.Row="3" Grid.Column="2"/>
-        
-        <Slider Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Value="{Binding Path=rgbEdit.Blue}" Minimum="0"
-                Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True" Background="Blue"/>
-        <TextBox Grid.Row="4" Grid.Column="2"/>
 
-        <Slider Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Value="{Binding Path=rgbEdit.Brightness}" Minimum="0"
+        <Slider Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Value="{Binding Path=RGB_Red}" Minimum="0"
+                Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True" Background="Red"/>
+        <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Path=RGB_Red, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+            StringFormat={}{0:000}}" MaxLength="3"/>
+
+        <Slider Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Value="{Binding Path=RGB_Green}" Minimum="0"
+                Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True" Background="Green"/>
+        <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding Path=RGB_Green, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+            StringFormat={}{0:000}}" MaxLength="3"/>
+
+        <Slider Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Value="{Binding Path=RGB_Blue}" Minimum="0"
+                Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True" Background="Blue"/>
+        <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding Path=RGB_Blue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+            StringFormat={}{0:000}}" MaxLength="3"/>
+
+        <Slider Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Value="{Binding Path=RGB_Brightness}" Minimum="0"
                 Maximum="255" TickFrequency="1" IsSnapToTickEnabled="True">
             <Slider.Background>
-                <Binding Converter="{StaticResource RGBToBrushConverter}" Path="rgbEdit" Mode="OneWay"/>
+                <Binding Converter="{StaticResource RGBToBrushConverter}" Path="RGBEdit" Mode="OneWay"/>
             </Slider.Background>
         </Slider>
-        <TextBox Grid.Row="5" Grid.Column="2"/>
+        <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding Path=RGB_Brightness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+            StringFormat={}{0:000}}" MaxLength="3"/>
         
         <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
@@ -66,8 +69,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Content="Save" Margin="2"/>
-            <Button Grid.Column="2" Content="Cancel" Margin="2"/>
+            <Button Grid.Column="1" x:Name="SaveButton" Content="Save" Margin="2"/>
+            <Button Grid.Column="2" x:Name="CancelButton" Content="Cancel" Margin="2"/>
         </Grid>
     </Grid>
 </Window>

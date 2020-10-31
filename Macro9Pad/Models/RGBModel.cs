@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Macro9Pad.Models
 {
     public class RGBModel
     {
-        public byte Red { get; private set; }
+        public byte Red { get; set; }
 
-        public byte Green { get; private set; }
+        public byte Green { get; set; }
 
-        public byte Blue { get; private set; }
+        public byte Blue { get; set; }
 
-        public byte Brightness { get; private set; }
+        public byte Brightness { get; set; }
 
         public RGBModel()
         {
