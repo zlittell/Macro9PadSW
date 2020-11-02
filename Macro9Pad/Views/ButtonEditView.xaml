@@ -4,9 +4,137 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Macro9Pad.Views"
+        xmlns:converters="clr-namespace:Macro9Pad.Helpers"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="ButtonEditView" Height="450" Width="800">
+        Title="ButtonEditView" SizeToContent="WidthAndHeight" MaxHeight="1000" MaxWidth="1000">
+    
+    <Window.Resources>
+        <converters:ModifierIsCheckedConverter x:Key="ModifierCheckedConverter"/>
+    </Window.Resources>
+    
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <TextBlock Text="Modifiers:" FontWeight="Bold"/>
+            
+            <CheckBox x:Name="LeftControl" Content="Left Control" IsChecked="{Binding Path=ButtonEdit.Modifier, Mode=OneWay, 
+                Converter={StaticResource ModifierCheckedConverter}, ConverterParameter=LeftControl}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ModifierCheckBoxCommand">
+                            <cal:Parameter Value="{Binding ElementName=LeftControl}"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </CheckBox>
+
+            <CheckBox x:Name="LeftShift" Content="Left Shift" IsChecked="{Binding Path=ButtonEdit.Modifier, Mode=OneWay, 
+                Converter={StaticResource ModifierCheckedConverter}, ConverterParameter=LeftShift}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ModifierCheckBoxCommand">
+                            <cal:Parameter Value="{Binding ElementName=LeftShift}"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </CheckBox>
+
+            <CheckBox x:Name="LeftAlt" Content="Left Alt" IsChecked="{Binding Path=ButtonEdit.Modifier, Mode=OneWay, 
+                Converter={StaticResource ModifierCheckedConverter}, ConverterParameter=LeftAlt}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ModifierCheckBoxCommand">
+                            <cal:Parameter Value="{Binding ElementName=LeftAlt}"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </CheckBox>
+
+            <CheckBox x:Name="LeftMeta" Content="Left Meta" IsChecked="{Binding Path=ButtonEdit.Modifier, Mode=OneWay, 
+                Converter={StaticResource ModifierCheckedConverter}, ConverterParameter=LeftMeta}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ModifierCheckBoxCommand">
+                            <cal:Parameter Value="{Binding ElementName=LeftMeta}"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </CheckBox>
+
+            <CheckBox x:Name="RightControl" Content="Right Control" IsChecked="{Binding Path=ButtonEdit.Modifier, Mode=OneWay, 
+                Converter={StaticResource ModifierCheckedConverter}, ConverterParameter=RightControl}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ModifierCheckBoxCommand">
+                            <cal:Parameter Value="{Binding ElementName=RightControl}"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </CheckBox>
+
+            <CheckBox x:Name="RightShift" Content="Right Shift" IsChecked="{Binding Path=ButtonEdit.Modifier, Mode=OneWay, 
+                Converter={StaticResource ModifierCheckedConverter}, ConverterParameter=RightShift}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ModifierCheckBoxCommand">
+                            <cal:Parameter Value="{Binding ElementName=RightShift}"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </CheckBox>
+
+            <CheckBox x:Name="RightAlt" Content="Right Alt" IsChecked="{Binding Path=ButtonEdit.Modifier, Mode=OneWay, 
+                Converter={StaticResource ModifierCheckedConverter}, ConverterParameter=RightAlt}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ModifierCheckBoxCommand">
+                            <cal:Parameter Value="{Binding ElementName=RightAlt}"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </CheckBox>
+
+            <CheckBox x:Name="RightMeta" Content="Right Meta" IsChecked="{Binding Path=ButtonEdit.Modifier, Mode=OneWay, 
+                Converter={StaticResource ModifierCheckedConverter}, ConverterParameter=RightMeta}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ModifierCheckBoxCommand">
+                            <cal:Parameter Value="{Binding ElementName=RightMeta}"/>
+                        </cal:ActionMessage>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </CheckBox>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="1">
+            <TextBlock Text="Keypress:" FontWeight="Bold" Padding="1"/>
+            <ComboBox x:Name="BindableKeyboardScanCodes" SelectedItem="{Binding Path=SelectedScancode}"/>
+        </StackPanel>
+        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="6"/>
+            </Grid.RowDefinitions>
+            <Button Content="Save" Grid.Column="0" Grid.Row="1" Width="80" Height="40" HorizontalAlignment="Right"/>
+            <Button Content="Cancel" Grid.Column="2" Grid.Row="1" Width="80" Height="40" HorizontalAlignment="Left"/>
+        </Grid>
     </Grid>
 </Window>

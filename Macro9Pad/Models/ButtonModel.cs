@@ -7,9 +7,9 @@ namespace Macro9Pad.Models
 {
     public class ButtonModel
     {
-        private byte Modifier { get; set; }
+        public byte Modifier { get; set; }
 
-        private byte Button { get; set; }
+        public byte Button { get; set; }
 
         public ButtonModel()
         {
