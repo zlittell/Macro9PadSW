@@ -31,7 +31,7 @@ namespace Macro9Pad.ViewModels
 
         public void RGBEdit()
         {
-            this.windowManager.ShowDialogAsync(new RGBColorViewModel(this.deviceContents.RGB));
+            this.windowManager.ShowDialogAsync(new RGBColorViewModel((RGBModel)this.deviceContents.RGB.Clone()));
         }
 
         public void ButtonEdit(int buttonNumber)

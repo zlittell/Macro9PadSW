@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Macro9Pad.Models
 {
-    public class RGBModel
+    public class RGBModel : ICloneable
     {
         public byte Red { get; set; }
 
@@ -37,6 +37,18 @@ namespace Macro9Pad.Models
             this.Green = green;
             this.Blue = blue;
             this.Brightness = brightness;
+        }
+
+        public object Clone()
+        {
+            var rgb = new RGBModel
+            {
+                Red = this.Red,
+                Green = this.Green,
+                Blue = this.Blue,
+                Brightness = this.Brightness,
+            };
+            return rgb;
         }
     }
 }
