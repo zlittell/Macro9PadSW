@@ -8,7 +8,7 @@
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="ButtonEditView" SizeToContent="WidthAndHeight" MaxHeight="1000" MaxWidth="1000">
+        Title="Macro9Pad Button Edit" SizeToContent="WidthAndHeight" MaxHeight="1000" MaxWidth="1000">
     
     <Window.Resources>
         <converters:ModifierIsCheckedConverter x:Key="ModifierCheckedConverter"/>

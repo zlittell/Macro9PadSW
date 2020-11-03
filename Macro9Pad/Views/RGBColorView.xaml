@@ -7,7 +7,7 @@
         xmlns:converters="clr-namespace:Macro9Pad.Helpers"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="RGBColorView" Height="240" Width="280">
+        Title="Macro9Pad RGB Edit" Height="240" Width="280">
     
     <Window.Resources>
         <converters:RGBToBrushConverter x:Key="RGBToBrushConverter"/>
