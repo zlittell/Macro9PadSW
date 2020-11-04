@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using Caliburn.Micro;
+using Macro9Pad.EventModels;
 using Macro9Pad.Helpers;
 using Macro9Pad.Models;
 
@@ -10,11 +11,17 @@ namespace Macro9Pad.ViewModels
 {
     public class ButtonEditViewModel : Screen
     {
-        private ButtonModel buttonEdit { get; set; }
+        private int numberOfButton;
 
-        public ButtonEditViewModel(ButtonModel button)
+        private ButtonModel buttonEdit;
+
+        private IEventAggregator eventAggregator;
+
+        public ButtonEditViewModel(IEventAggregator evAgg, int number, ButtonModel button)
         {
             this.buttonEdit = button;
+            this.numberOfButton = number;
+            this.eventAggregator = evAgg;
         }
 
         public ButtonModel ButtonEdit
@@ -44,6 +51,17 @@ namespace Macro9Pad.ViewModels
             {
                 this.buttonEdit.Button = (byte)value;
             }
+        }
+
+        public void SaveButton()
+        {
+            this.eventAggregator.PublishOnUIThreadAsync(new ButtonChangeEvent(this.numberOfButton, this.ButtonEdit));
+            this.TryCloseAsync();
+        }
+
+        public void CancelButton()
+        {
+            this.TryCloseAsync();
         }
 
         /// <summary>

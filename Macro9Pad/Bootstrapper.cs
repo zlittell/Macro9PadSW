@@ -24,6 +24,7 @@ namespace Macro9Pad
             this.container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<DeviceModel>()
+                .Singleton<IEventAggregator, EventAggregator>()
                 .Singleton<EventHandler>();
 
             // Instantiate any singletons ahead of time

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Printing;
 using System.Text;
 
 namespace Macro9Pad.Models

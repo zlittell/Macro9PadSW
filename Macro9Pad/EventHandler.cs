@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using Macro9Pad.EventModels;
 using Macro9Pad.Models;
+using Macro9Pad.Views;
 
 namespace Macro9Pad
 {
-    public class EventHandler : INotifyPropertyChanged, IHandle<ButtonChangeEvent>, IHandle<RGBChangeEvent>
+    public class EventHandler : PropertyChangedBase, IHandle<ButtonChangeEvent>, IHandle<RGBChangeEvent>
     {
         private readonly IEventAggregator eventAggregator;
 
@@ -18,12 +19,9 @@ namespace Macro9Pad
         public EventHandler(IEventAggregator evAgg, DeviceModel deviceModel)
         {
             this.eventAggregator = evAgg;
+            this.eventAggregator.SubscribeOnUIThread(this);
             this.deviceContents = deviceModel;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged(string propertyName) => this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         public Task HandleAsync(ButtonChangeEvent message, CancellationToken cancellationToken)
         {
@@ -89,13 +87,15 @@ namespace Macro9Pad
                 }
             }
 
-            this.OnPropertyChanged(() => this.deviceContents);
+            this.NotifyOfPropertyChange(() => this.deviceContents);
             return Task.CompletedTask;
         }
 
         public Task HandleAsync(RGBChangeEvent message, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            this.deviceContents.RGB = message?.RGBValues;
+            this.NotifyOfPropertyChange(() => this.deviceContents);
+            return Task.CompletedTask;
         }
     }
 }

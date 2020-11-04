@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
 namespace Macro9Pad.Models
 {
-    public class ButtonModel
+    public class ButtonModel : ICloneable
     {
         public byte Modifier { get; set; }
 
@@ -27,6 +28,11 @@ namespace Macro9Pad.Models
         {
             this.Modifier = modifier;
             this.Button = button;
+        }
+
+        public object Clone()
+        {
+            throw new NotImplementedException();
         }
     }
 }

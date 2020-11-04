@@ -12,10 +12,13 @@ namespace Macro9Pad.ViewModels
         private readonly IWindowManager windowManager;
 
         private readonly DeviceModel deviceContents;
+
+        private readonly IEventAggregator eventAggregator;
         
-        public MainViewModel(IWindowManager windowManager, DeviceModel deviceModel)
+        public MainViewModel(IWindowManager windowManager, IEventAggregator evAgg, DeviceModel deviceModel)
         {
             this.windowManager = windowManager;
+            this.eventAggregator = evAgg;
             this.deviceContents = deviceModel;
         }
 
@@ -34,7 +37,8 @@ namespace Macro9Pad.ViewModels
 
         public void RGBEdit()
         {
-            this.windowManager.ShowDialogAsync(new RGBColorViewModel((RGBModel)this.deviceContents.RGB.Clone()));
+            this.windowManager.ShowDialogAsync(
+                new RGBColorViewModel(this.eventAggregator, (RGBModel)this.deviceContents.RGB.Clone()));
         }
 
         public void ButtonEdit(int buttonNumber)
@@ -102,7 +106,7 @@ namespace Macro9Pad.ViewModels
                 }
             }
 
-            this.windowManager.ShowDialogAsync(new ButtonEditViewModel(button));
+            this.windowManager.ShowDialogAsync(new ButtonEditViewModel(this.eventAggregator, buttonNumber, (ButtonModel)button.Clone()));
         }
 
         public void LoadProfile()

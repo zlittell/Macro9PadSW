@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Macro9Pad.EventModels;
 using Macro9Pad.Models;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,12 @@ namespace Macro9Pad.ViewModels
     {
         private RGBModel rgbEdit;
 
-        public RGBColorViewModel(RGBModel rgb)
+        private IEventAggregator eventAggregator;
+
+        public RGBColorViewModel(IEventAggregator evAgg, RGBModel rgb)
         {
             this.rgbEdit = rgb;
+            this.eventAggregator = evAgg;
         }
 
         public byte RGB_Red
@@ -70,6 +74,7 @@ namespace Macro9Pad.ViewModels
 
         public void SaveButton()
         {
+            this.eventAggregator.PublishOnUIThreadAsync(new RGBChangeEvent(this.rgbEdit));
             this.TryCloseAsync();
         }
 
