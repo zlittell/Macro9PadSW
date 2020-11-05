@@ -48,7 +48,12 @@ namespace Macro9Pad.Models
     /// <inheritdoc/>
     public object Clone()
     {
-      throw new NotImplementedException();
+      var button = new ButtonModel
+      {
+        Button = this.Button,
+        Modifier = this.Modifier,
+      };
+      return button;
     }
   }
 }

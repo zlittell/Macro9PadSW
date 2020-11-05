@@ -34,11 +34,11 @@ namespace Macro9Pad
           .Singleton<IWindowManager, WindowManager>()
           .Singleton<DeviceModel>()
           .Singleton<IEventAggregator, EventAggregator>()
-          .Singleton<EventHandler>();
+          .Singleton<DeviceEventProcessor>();
 
       // Instantiate any singletons ahead of time
       this.container.GetInstance<DeviceModel>();
-      this.container.GetInstance<EventHandler>();
+      this.container.GetInstance<DeviceEventProcessor>();
 
       // Register all viewmodels with container
       this.GetType().Assembly.GetTypes()
