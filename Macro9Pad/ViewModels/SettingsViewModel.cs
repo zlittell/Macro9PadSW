@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// <copyright file="SettingsViewModel.cs" company="Mechanical Squid Factory">
+// Copyright © Mechanical Squid Factory Licensed under the Unlicense.
+// </copyright>
+
 using Caliburn.Micro;
 
 namespace Macro9Pad.ViewModels
 {
-    public class SettingsViewModel : Screen
-    {
-    }
+  /// <summary>View Model for Settings View.</summary>
+  public class SettingsViewModel : Screen
+  {
+  }
 }

@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// <copyright file="SettingsChangeEvent.cs" company="Mechanical Squid Factory">
+// Copyright © Mechanical Squid Factory Licensed under the Unlicense.
+// </copyright>
 
 namespace Macro9Pad.EventModels
 {
-    public class SettingsChangeEvent
-    {
-    }
+  /// <summary>Change event for settings.</summary>
+  public class SettingsChangeEvent
+  {
+  }
 }

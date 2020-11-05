@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// <copyright file="ButtonEditView.xaml.cs" company="Mechanical Squid Factory">
+// Copyright © Mechanical Squid Factory Licensed under the Unlicense.
+// </copyright>
+
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Macro9Pad.Views
 {
-    /// <summary>
-    /// Interaction logic for ButtonEditView.xaml
-    /// </summary>
-    public partial class ButtonEditView : Window
+  /// <summary>
+  /// Interaction logic for ButtonEditView.xaml.
+  /// </summary>
+  public partial class ButtonEditView : Window
+  {
+    /// <summary>Initializes a new instance of the <see cref="ButtonEditView"/> class.</summary>
+    public ButtonEditView()
     {
-        public ButtonEditView()
-        {
-            InitializeComponent();
-        }
+      this.InitializeComponent();
     }
+  }
 }

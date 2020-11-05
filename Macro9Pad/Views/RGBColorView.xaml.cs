@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// <copyright file="RGBColorView.xaml.cs" company="Mechanical Squid Factory">
+// Copyright © Mechanical Squid Factory Licensed under the Unlicense.
+// </copyright>
+
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Macro9Pad.Views
 {
-    /// <summary>
-    /// Interaction logic for RGBColorView.xaml
-    /// </summary>
-    public partial class RGBColorView : Window
+  /// <summary>
+  /// Interaction logic for RGBColorView.xaml.
+  /// </summary>
+  public partial class RGBColorView : Window
+  {
+    /// <summary>Initializes a new instance of the <see cref="RGBColorView"/> class.</summary>
+    public RGBColorView()
     {
-        public RGBColorView()
-        {
-            InitializeComponent();
-        }
+      this.InitializeComponent();
     }
+  }
 }

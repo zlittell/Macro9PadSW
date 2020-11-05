@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="RGBToBrushConverter.cs" company="Mechanical Squid Factory">
+// Copyright © Mechanical Squid Factory Licensed under the Unlicense.
+// </copyright>
+
+using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;

@@ -31,20 +31,20 @@
           }
         }
       },
-      "Microsoft.CodeAnalysis.FxCopAnalyzers/3.3.0": {
+      "Microsoft.CodeAnalysis.FxCopAnalyzers/3.3.1": {
         "dependencies": {
-          "Microsoft.CodeAnalysis.VersionCheckAnalyzer": "3.3.0",
-          "Microsoft.CodeQuality.Analyzers": "3.3.0",
-          "Microsoft.NetCore.Analyzers": "3.3.0",
-          "Microsoft.NetFramework.Analyzers": "3.3.0"
+          "Microsoft.CodeAnalysis.VersionCheckAnalyzer": "3.3.1",
+          "Microsoft.CodeQuality.Analyzers": "3.3.1",
+          "Microsoft.NetCore.Analyzers": "3.3.1",
+          "Microsoft.NetFramework.Analyzers": "3.3.1"
         }
       },
-      "Microsoft.CodeAnalysis.VersionCheckAnalyzer/3.3.0": {},
-      "Microsoft.CodeQuality.Analyzers/3.3.0": {},
-      "Microsoft.NetCore.Analyzers/3.3.0": {},
+      "Microsoft.CodeAnalysis.VersionCheckAnalyzer/3.3.1": {},
+      "Microsoft.CodeQuality.Analyzers/3.3.1": {},
+      "Microsoft.NetCore.Analyzers/3.3.1": {},
       "Microsoft.NETCore.Platforms/1.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
-      "Microsoft.NetFramework.Analyzers/3.3.0": {},
+      "Microsoft.NetFramework.Analyzers/3.3.1": {},
       "Microsoft.Win32.Primitives/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
@@ -245,12 +245,12 @@
           }
         }
       },
-      "StyleCop.Analyzers/1.2.0-beta.205": {
+      "StyleCop.Analyzers/1.2.0-beta.261": {
         "dependencies": {
-          "StyleCop.Analyzers.Unstable": "1.2.0.205"
+          "StyleCop.Analyzers.Unstable": "1.2.0.261"
         }
       },
-      "StyleCop.Analyzers.Unstable/1.2.0.205": {},
+      "StyleCop.Analyzers.Unstable/1.2.0.261": {},
       "System.AppContext/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"
@@ -1113,33 +1113,33 @@
       "path": "caliburn.micro.core/4.0.136-rc",
       "hashPath": "caliburn.micro.core.4.0.136-rc.nupkg.sha512"
     },
-    "Microsoft.CodeAnalysis.FxCopAnalyzers/3.3.0": {
+    "Microsoft.CodeAnalysis.FxCopAnalyzers/3.3.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-k3Icqx8kc+NrHImuiB8Jc/wd32Xeyd2B/7HOR5Qu9pyKzXQ4ikPeBAwzG2FSTuYhyIuNWvwL5k9yYBbbVz6w9w==",
-      "path": "microsoft.codeanalysis.fxcopanalyzers/3.3.0",
-      "hashPath": "microsoft.codeanalysis.fxcopanalyzers.3.3.0.nupkg.sha512"
+      "sha512": "sha512-O6L7wOD6dmytWZr4ulw6wLYk8QmsO/TlBHyWOB2OQKnUm31JGOXEncJjVm8Fw24BDzP22wfsleWFidiNU/DIsA==",
+      "path": "microsoft.codeanalysis.fxcopanalyzers/3.3.1",
+      "hashPath": "microsoft.codeanalysis.fxcopanalyzers.3.3.1.nupkg.sha512"
     },
-    "Microsoft.CodeAnalysis.VersionCheckAnalyzer/3.3.0": {
+    "Microsoft.CodeAnalysis.VersionCheckAnalyzer/3.3.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xjLM3DRFZMan3nQyBQEM1mBw6VqQybi4iMJhMFW6Ic1E1GCvqJR3ABOwEL7WtQjDUzxyrGld9bASnAos7G/Xyg==",
-      "path": "microsoft.codeanalysis.versioncheckanalyzer/3.3.0",
-      "hashPath": "microsoft.codeanalysis.versioncheckanalyzer.3.3.0.nupkg.sha512"
+      "sha512": "sha512-ZUMf70abtWvwevkLFOlEHDck81oZCsi9jBHODDSSH2YPQdtCKzeQfaWWnAmn2ii7N3Q2V2arOj4Mu8ZTTSs3PA==",
+      "path": "microsoft.codeanalysis.versioncheckanalyzer/3.3.1",
+      "hashPath": "microsoft.codeanalysis.versioncheckanalyzer.3.3.1.nupkg.sha512"
     },
-    "Microsoft.CodeQuality.Analyzers/3.3.0": {
+    "Microsoft.CodeQuality.Analyzers/3.3.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-zZ3miq6u22UFQKhfJyLnVEJ+DgeOopLh3eKJnKAcOetPP2hiv3wa7kHZlBDeTvtqJQiAQhAVbttket8XxjN1zw==",
-      "path": "microsoft.codequality.analyzers/3.3.0",
-      "hashPath": "microsoft.codequality.analyzers.3.3.0.nupkg.sha512"
+      "sha512": "sha512-h6o+zBUf47OFarRQn6LjwUNFvRUyUWLWcnunw6vLCxSDBmgPDQCsrsWpEtMz/+NKBvOeikVJobscarx3Wgtbiw==",
+      "path": "microsoft.codequality.analyzers/3.3.1",
+      "hashPath": "microsoft.codequality.analyzers.3.3.1.nupkg.sha512"
     },
-    "Microsoft.NetCore.Analyzers/3.3.0": {
+    "Microsoft.NetCore.Analyzers/3.3.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6qptTHUu1Wfszuf83NhU0IoAb4j7YWOpJs6oc6S4G/nI6aGGWKH/Xi5Vs9L/8lrI74ijEEzPcIwafSQW5ASHtA==",
-      "path": "microsoft.netcore.analyzers/3.3.0",
-      "hashPath": "microsoft.netcore.analyzers.3.3.0.nupkg.sha512"
+      "sha512": "sha512-8Ez3EImhFioAsB4bR2bBLA3Pkcz8K/VI6jPdnm98nLu+rodZU8s8QRjRnkrQEnC6VcVAVZJ8W7DL9yrfDsgjqQ==",
+      "path": "microsoft.netcore.analyzers/3.3.1",
+      "hashPath": "microsoft.netcore.analyzers.3.3.1.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
@@ -1155,12 +1155,12 @@
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
     },
-    "Microsoft.NetFramework.Analyzers/3.3.0": {
+    "Microsoft.NetFramework.Analyzers/3.3.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-JTfMic5fEFWICePbr7GXOGPranqS9Qxu2U/BZEcnnGbK1SFW8TxRyGp6O1L52xsbfOdqmzjc0t5ubhDrjj+Xpg==",
-      "path": "microsoft.netframework.analyzers/3.3.0",
-      "hashPath": "microsoft.netframework.analyzers.3.3.0.nupkg.sha512"
+      "sha512": "sha512-EI5Afqt03Kq4Wy5Ot6nGvnwunisM9ORi5L9fteCCOK1Wh283wAhM1dIOWOsBN3jlFbw1VTeVPR8oPz9J9xlHLw==",
+      "path": "microsoft.netframework.analyzers/3.3.1",
+      "hashPath": "microsoft.netframework.analyzers.3.3.1.nupkg.sha512"
     },
     "Microsoft.Win32.Primitives/4.3.0": {
       "type": "package",
@@ -1302,19 +1302,19 @@
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512"
     },
-    "StyleCop.Analyzers/1.2.0-beta.205": {
+    "StyleCop.Analyzers/1.2.0-beta.261": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ORvUXKlJRqAWstZiSH9LgEuM5hBye8mUDDSpMoQhiKLFUtFEGesfr88Qa8jC0KKVaBTUZzdo4fNZM4oHeV/JsQ==",
-      "path": "stylecop.analyzers/1.2.0-beta.205",
-      "hashPath": "stylecop.analyzers.1.2.0-beta.205.nupkg.sha512"
+      "sha512": "sha512-C0bMvkB95HkX2LNsKO9KbVM+BMzkHjRXxdxQ7rogiy8gtwy2yAaPNFY1+98DzlN8XUpJ/39oGX6Da7qnMp2FeA==",
+      "path": "stylecop.analyzers/1.2.0-beta.261",
+      "hashPath": "stylecop.analyzers.1.2.0-beta.261.nupkg.sha512"
     },
-    "StyleCop.Analyzers.Unstable/1.2.0.205": {
+    "StyleCop.Analyzers.Unstable/1.2.0.261": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-YiRjba3yBp2mCvtsOeQf8XU1tPaOZFTKxcsj44tTpGrhRchmtuKtgyMCV9kkOFdfKISnHk0gzhigITlrrrvMuA==",
-      "path": "stylecop.analyzers.unstable/1.2.0.205",
-      "hashPath": "stylecop.analyzers.unstable.1.2.0.205.nupkg.sha512"
+      "sha512": "sha512-FpInVJVmFyWIRz4oIpPpLuOkW3oFhfU4CcT7bkeZlN+iwG1T37hGVZFQ8bA2fsJv5vAHOlqLpvk7HyU3q6tF2w==",
+      "path": "stylecop.analyzers.unstable/1.2.0.261",
+      "hashPath": "stylecop.analyzers.unstable.1.2.0.261.nupkg.sha512"
     },
     "System.AppContext/4.3.0": {
       "type": "package",

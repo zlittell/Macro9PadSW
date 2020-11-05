@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="ButtonEditViewModel.cs" company="Mechanical Squid Factory">
+// Copyright © Mechanical Squid Factory Licensed under the Unlicense.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
@@ -9,134 +13,140 @@ using Macro9Pad.Models;
 
 namespace Macro9Pad.ViewModels
 {
-    public class ButtonEditViewModel : Screen
+  /// <summary>
+  /// View model for Button Edit View.
+  /// </summary>
+  public class ButtonEditViewModel : Screen
+  {
+    private readonly IEventAggregator eventAggregator;
+
+    private readonly int numberOfButton;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ButtonEditViewModel"/> class.
+    /// </summary>
+    /// <param name="evAgg">Event aggregator from caliburn.</param>
+    /// <param name="number">Number of button to edit.</param>
+    /// <param name="button">Button to edit.</param>
+    public ButtonEditViewModel(IEventAggregator evAgg, int number, ButtonModel button)
     {
-        private int numberOfButton;
-
-        private ButtonModel buttonEdit;
-
-        private IEventAggregator eventAggregator;
-
-        public ButtonEditViewModel(IEventAggregator evAgg, int number, ButtonModel button)
-        {
-            this.buttonEdit = button;
-            this.numberOfButton = number;
-            this.eventAggregator = evAgg;
-        }
-
-        public ButtonModel ButtonEdit
-        {
-            get
-            {
-                return this.buttonEdit;
-            }
-        }
-
-        public IEnumerable<HIDKeyboardScanCode> BindableKeyboardScanCodes
-        {
-            get
-            {
-                return Enum.GetValues(typeof(HIDKeyboardScanCode)).Cast<HIDKeyboardScanCode>();
-            }
-        }
-
-        public HIDKeyboardScanCode SelectedScancode
-        {
-            get
-            {
-                return (HIDKeyboardScanCode)Enum.ToObject(typeof(HIDKeyboardScanCode), this.buttonEdit.Button);
-            }
-
-            set
-            {
-                this.buttonEdit.Button = (byte)value;
-            }
-        }
-
-        public void SaveButton()
-        {
-            this.eventAggregator.PublishOnUIThreadAsync(new ButtonChangeEvent(this.numberOfButton, this.ButtonEdit));
-            this.TryCloseAsync();
-        }
-
-        public void CancelButton()
-        {
-            this.TryCloseAsync();
-        }
-
-        /// <summary>
-        /// Processes a check box change.
-        /// </summary>
-        /// <param name="callingElement">Checkbox that has been altered.</param>
-        public void ModifierCheckBoxCommand(CheckBox callingElement)
-        {
-            byte modifier = 0x00;
-
-            switch (callingElement?.Name)
-            {
-                case "LeftControl":
-                {
-                    modifier = (byte)HIDKeyboardModifierMasks.LeftControl;
-                    break;
-                }
-
-                case "LeftShift":
-                {
-                    modifier = (byte)HIDKeyboardModifierMasks.LeftShift;
-                    break;
-                }
-
-                case "LeftAlt":
-                {
-                    modifier = (byte)HIDKeyboardModifierMasks.LeftAlt;
-                    break;
-                }
-
-                case "LeftMeta":
-                {
-                    modifier = (byte)HIDKeyboardModifierMasks.LeftMeta;
-                    break;
-                }
-
-                case "RightControl":
-                {
-                    modifier = (byte)HIDKeyboardModifierMasks.RightControl;
-                    break;
-                }
-
-                case "RightShift":
-                {
-                    modifier = (byte)HIDKeyboardModifierMasks.RightShift;
-                    break;
-                }
-
-                case "RightAlt":
-                {
-                    modifier = (byte)HIDKeyboardModifierMasks.RightAlt;
-                    break;
-                }
-
-                case "RightMeta":
-                {
-                    modifier = (byte)HIDKeyboardModifierMasks.RightMeta;
-                    break;
-                }
-
-                default:
-                {
-                    throw new ArgumentOutOfRangeException(callingElement.Name.ToString(), "There is no switch case for handling this element.");
-                }
-            }
-
-            // Mask modifier logic
-            if ((bool)callingElement.IsChecked)
-            {
-                this.buttonEdit.Modifier |= modifier;
-            }
-            else
-            {
-                this.buttonEdit.Modifier &= (byte)~modifier;
-            }
-        }
+      this.ButtonEdit = button;
+      this.numberOfButton = number;
+      this.eventAggregator = evAgg;
     }
+
+    /// <summary>Gets button to edit.</summary>
+    public ButtonModel ButtonEdit { get; }
+
+    /// <summary>Gets list of keycodes to bind to.</summary>
+    public IEnumerable<HIDKeyboardScanCode> BindableKeyboardScanCodes
+    {
+      get
+      {
+        return Enum.GetValues(typeof(HIDKeyboardScanCode)).Cast<HIDKeyboardScanCode>();
+      }
+    }
+
+    /// <summary>Gets or sets the currently selected scan code.</summary>
+    public HIDKeyboardScanCode SelectedScancode
+    {
+      get
+      {
+        return (HIDKeyboardScanCode)Enum.ToObject(typeof(HIDKeyboardScanCode), this.ButtonEdit.Button);
+      }
+
+      set
+      {
+        this.ButtonEdit.Button = (byte)value;
+      }
+    }
+
+    /// <summary>Save changes to button.</summary>
+    public void SaveButton()
+    {
+      this.eventAggregator.PublishOnBackgroundThreadAsync(new ButtonChangeEvent(this.numberOfButton, this.ButtonEdit));
+      this.TryCloseAsync();
+    }
+
+    /// <summary>Cancel changes to button.</summary>
+    public void CancelButton()
+    {
+      this.TryCloseAsync();
+    }
+
+    /// <summary>
+    /// Processes a check box change.
+    /// </summary>
+    /// <param name="callingElement">Checkbox that has been altered.</param>
+    public void ModifierCheckBoxCommand(CheckBox callingElement)
+    {
+      byte modifier;
+
+      switch (callingElement?.Name)
+      {
+        case "LeftControl":
+        {
+          modifier = (byte)HIDKeyboardModifierMasks.LeftControl;
+          break;
+        }
+
+        case "LeftShift":
+        {
+          modifier = (byte)HIDKeyboardModifierMasks.LeftShift;
+          break;
+        }
+
+        case "LeftAlt":
+        {
+          modifier = (byte)HIDKeyboardModifierMasks.LeftAlt;
+          break;
+        }
+
+        case "LeftMeta":
+        {
+          modifier = (byte)HIDKeyboardModifierMasks.LeftMeta;
+          break;
+        }
+
+        case "RightControl":
+        {
+          modifier = (byte)HIDKeyboardModifierMasks.RightControl;
+          break;
+        }
+
+        case "RightShift":
+        {
+          modifier = (byte)HIDKeyboardModifierMasks.RightShift;
+          break;
+        }
+
+        case "RightAlt":
+        {
+          modifier = (byte)HIDKeyboardModifierMasks.RightAlt;
+          break;
+        }
+
+        case "RightMeta":
+        {
+          modifier = (byte)HIDKeyboardModifierMasks.RightMeta;
+          break;
+        }
+
+        default:
+        {
+          throw new ArgumentOutOfRangeException(callingElement.Name.ToString(), "There is no switch case for handling this element.");
+        }
+      }
+
+      // Mask modifier logic
+      if ((bool)callingElement.IsChecked)
+      {
+        this.ButtonEdit.Modifier |= modifier;
+      }
+      else
+      {
+        this.ButtonEdit.Modifier &= (byte)~modifier;
+      }
+    }
+  }
 }
