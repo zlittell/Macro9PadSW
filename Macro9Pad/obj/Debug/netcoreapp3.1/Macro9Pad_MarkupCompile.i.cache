@@ -1,18 +1,18 @@
 ﻿Macro9Pad
-
+1.0.0.0
 
 winexe
 C#
 .cs
-C:\Users\zlitt\source\repos\Macro9Pad\Macro9Pad\obj\Debug\netcoreapp3.1\
+C:\projects\Macro9PadSW\Macro9Pad\obj\Debug\netcoreapp3.1\
 Macro9Pad
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
-C:\Users\zlitt\source\repos\Macro9Pad\Macro9Pad\App.xaml
+C:\projects\Macro9PadSW\Macro9Pad\App.xaml
 41075655286
 
-23-1523494768
+24-1588851878
 2021289862423
 Views\ButtonEditView.xaml;Views\MainView.xaml;Views\RGBColorView.xaml;Views\SettingsView.xaml;
 

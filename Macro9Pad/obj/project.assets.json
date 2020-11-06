@@ -5319,11 +5319,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zlitt\\source\\repos\\Macro9Pad\\Macro9Pad\\Macro9Pad.csproj",
+      "projectUniqueName": "C:\\projects\\Macro9PadSW\\Macro9Pad\\Macro9Pad.csproj",
       "projectName": "Macro9Pad",
-      "projectPath": "C:\\Users\\zlitt\\source\\repos\\Macro9Pad\\Macro9Pad\\Macro9Pad.csproj",
+      "projectPath": "C:\\projects\\Macro9PadSW\\Macro9Pad\\Macro9Pad.csproj",
       "packagesPath": "C:\\Users\\zlitt\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zlitt\\source\\repos\\Macro9Pad\\Macro9Pad\\obj\\",
+      "outputPath": "C:\\projects\\Macro9PadSW\\Macro9Pad\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -5389,7 +5389,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
