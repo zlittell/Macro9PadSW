@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Macro9Pad.Models
+namespace Macro9Pad.Device.Models
 {
   /// <summary>Class describing a button.</summary>
   public class ButtonModel : ICloneable

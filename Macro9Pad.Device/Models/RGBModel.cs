@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Macro9Pad.Models
+namespace Macro9Pad.Device.Models
 {
   /// <summary>
   /// Models the RGB led of the device.

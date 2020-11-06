@@ -7,7 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Macro9Pad.EventModels;
-using Macro9Pad.Models;
 
 namespace Macro9Pad
 {

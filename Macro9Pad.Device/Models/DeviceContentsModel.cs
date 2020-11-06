@@ -1,47 +1,47 @@
-﻿// <copyright file="DeviceModel.cs" company="Mechanical Squid Factory">
+﻿// <copyright file="DeviceContentsModel.cs" company="Mechanical Squid Factory">
 // Copyright © Mechanical Squid Factory Licensed under the Unlicense.
 // </copyright>
 
 using Caliburn.Micro;
 
-namespace Macro9Pad.Models
+namespace Macro9Pad.Device.Models
 {
-  /// <summary>Model of a device and its contents.</summary>
-  public class DeviceModel : PropertyChangedBase
+  /// <summary>Model of a Device's Contents.</summary>
+  public class DeviceContentsModel : PropertyChangedBase
   {
-    private RGBModel rgb = new RGBModel();
+    private ButtonModel b1;
 
-    private ButtonModel b1 = new ButtonModel();
+    private ButtonModel b2;
 
-    private ButtonModel b2 = new ButtonModel();
+    private ButtonModel b3;
 
-    private ButtonModel b3 = new ButtonModel();
+    private ButtonModel b4;
 
-    private ButtonModel b4 = new ButtonModel();
+    private ButtonModel b5;
 
-    private ButtonModel b5 = new ButtonModel();
+    private ButtonModel b6;
 
-    private ButtonModel b6 = new ButtonModel();
+    private ButtonModel b7;
 
-    private ButtonModel b7 = new ButtonModel();
+    private ButtonModel b8;
 
-    private ButtonModel b8 = new ButtonModel();
+    private ButtonModel b9;
 
-    private ButtonModel b9 = new ButtonModel();
 
-    /// <summary>Gets or sets RGBModel of device.</summary>
-    public RGBModel RGB
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DeviceContentsModel"/> class.
+    /// </summary>
+    public DeviceContentsModel()
     {
-      get
-      {
-        return this.rgb;
-      }
-
-      set
-      {
-        this.rgb = value;
-        this.NotifyOfPropertyChange(() => this.RGB);
-      }
+      this.b1 = new ButtonModel();
+      this.b2 = new ButtonModel();
+      this.b3 = new ButtonModel();
+      this.b4 = new ButtonModel();
+      this.b5 = new ButtonModel();
+      this.b6 = new ButtonModel();
+      this.b7 = new ButtonModel();
+      this.b8 = new ButtonModel();
+      this.b9 = new ButtonModel();
     }
 
     /// <summary>Gets or sets ButtonModel for Button1 of device.</summary>
@@ -177,21 +177,6 @@ namespace Macro9Pad.Models
         this.b9 = value;
         this.NotifyOfPropertyChange(() => this.Button9);
       }
-    }
-
-    /// <summary>Gets a value indicating whether or not the device is dirty and needs updated.</summary>
-    public bool IsDirty { get; private set; }
-
-    /// <summary>Sets the device as dirty and needing updated.</summary>
-    public void SetDirty()
-    {
-      this.IsDirty = true;
-    }
-
-    /// <summary>Clears the device as dirty and needing updated.</summary>
-    public void ClearDirty()
-    {
-      this.IsDirty = false;
     }
   }
 }

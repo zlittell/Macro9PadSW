@@ -1,4 +1,4 @@
-﻿[*.cs]
+[*.cs]
 
 file_header_template = Copyright (c) Mechanical Squid Factory.\nLicensed under the Unlicense.
 
