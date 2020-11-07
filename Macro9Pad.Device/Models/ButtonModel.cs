@@ -9,6 +9,9 @@ namespace Macro9Pad.Device.Models
   /// <summary>Class describing a button.</summary>
   public class ButtonModel : ICloneable
   {
+    // Modifier, Button (1byte ea)
+    private const int ButtonModelLength = 1 + 1;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ButtonModel"/> class.
     /// </summary>
@@ -16,6 +19,25 @@ namespace Macro9Pad.Device.Models
     {
       this.Modifier = 0x00;
       this.Button = 0x00;
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ButtonModel"/> class.
+    /// </summary>
+    /// <param name="data">byte array to build Button Model with.</param>
+    public ButtonModel(byte[] data)
+    {
+      if (data == null)
+      {
+        throw new ArgumentNullException(nameof(data));
+      }
+      else if (data.Length != ButtonModelLength)
+      {
+        throw new ArgumentOutOfRangeException(nameof(data), "Length must match Button model length");
+      }
+
+      this.Modifier = data[0];
+      this.Button = data[1];
     }
 
     /// <summary>

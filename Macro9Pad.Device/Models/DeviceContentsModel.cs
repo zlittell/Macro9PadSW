@@ -3,12 +3,20 @@
 // </copyright>
 
 using Caliburn.Micro;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Macro9Pad.Device.Models
 {
   /// <summary>Model of a Device's Contents.</summary>
-  public class DeviceContentsModel : PropertyChangedBase
+  public class DeviceContentsModel : PropertyChangedBase, ICloneable
   {
+    // RGB (4bytes) plus Buttons 1-9 (2bytes ea)
+    private const int ContentsByteLength = 4 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2;
+
+    private RGBModel rgb;
+
     private ButtonModel b1;
 
     private ButtonModel b2;
@@ -33,6 +41,7 @@ namespace Macro9Pad.Device.Models
     /// </summary>
     public DeviceContentsModel()
     {
+      this.rgb = new RGBModel();
       this.b1 = new ButtonModel();
       this.b2 = new ButtonModel();
       this.b3 = new ButtonModel();
@@ -42,6 +51,54 @@ namespace Macro9Pad.Device.Models
       this.b7 = new ButtonModel();
       this.b8 = new ButtonModel();
       this.b9 = new ButtonModel();
+    }
+
+    public DeviceContentsModel(byte[] contents)
+    {
+      if (contents == null)
+      {
+        throw new ArgumentNullException(nameof(contents));
+      }
+      else if (contents.Length != ContentsByteLength)
+      {
+        throw new ArgumentOutOfRangeException(nameof(contents), "Length must match profile length");
+      }
+
+      int i = 0;
+      this.rgb = new RGBModel(contents.Take(4).ToArray());
+      i += 4;
+      this.b1 = new ButtonModel(contents.Skip(i).Take(2).ToArray());
+      i += 2;
+      this.b2 = new ButtonModel(contents.Skip(i).Take(2).ToArray());
+      i += 2;
+      this.b3 = new ButtonModel(contents.Skip(i).Take(2).ToArray());
+      i += 2;
+      this.b4 = new ButtonModel(contents.Skip(i).Take(2).ToArray());
+      i += 2;
+      this.b5 = new ButtonModel(contents.Skip(i).Take(2).ToArray());
+      i += 2;
+      this.b6 = new ButtonModel(contents.Skip(i).Take(2).ToArray());
+      i += 2;
+      this.b7 = new ButtonModel(contents.Skip(i).Take(2).ToArray());
+      i += 2;
+      this.b8 = new ButtonModel(contents.Skip(i).Take(2).ToArray());
+      i += 2;
+      this.b9 = new ButtonModel(contents.Skip(i).Take(2).ToArray());
+    }
+
+    /// <summary>Gets or sets RGBModel of device.</summary>
+    public RGBModel RGB
+    {
+      get
+      {
+        return this.rgb;
+      }
+
+      set
+      {
+        this.rgb = value;
+        this.NotifyOfPropertyChange(() => this.RGB);
+      }
     }
 
     /// <summary>Gets or sets ButtonModel for Button1 of device.</summary>
@@ -177,6 +234,60 @@ namespace Macro9Pad.Device.Models
         this.b9 = value;
         this.NotifyOfPropertyChange(() => this.Button9);
       }
+    }
+
+    /// <summary>
+    /// Converts Device Contents to byte array.
+    /// </summary>
+    /// <returns>byte array of profile.</returns>
+    public byte[] ToBytes()
+    {
+      List<byte> tempBytes = new List<byte>
+      {
+        this.rgb.Red,
+        this.rgb.Green,
+        this.rgb.Blue,
+        this.rgb.Brightness,
+        this.b1.Modifier,
+        this.b1.Button,
+        this.b2.Modifier,
+        this.b2.Button,
+        this.b3.Modifier,
+        this.b3.Button,
+        this.b4.Modifier,
+        this.b4.Button,
+        this.b5.Modifier,
+        this.b5.Button,
+        this.b6.Modifier,
+        this.b6.Button,
+        this.b7.Modifier,
+        this.b7.Button,
+        this.b8.Modifier,
+        this.b8.Button,
+        this.b9.Modifier,
+        this.b9.Button
+      };
+      return tempBytes.ToArray();
+    }
+
+    /// <inheritdoc/>
+    public object Clone()
+    {
+      var returnContents = new DeviceContentsModel()
+      {
+        rgb = (RGBModel)this.rgb.Clone(),
+        b1 = (ButtonModel)this.b1.Clone(),
+        b2 = (ButtonModel)this.b2.Clone(),
+        b3 = (ButtonModel)this.b3.Clone(),
+        b4 = (ButtonModel)this.b4.Clone(),
+        b5 = (ButtonModel)this.b5.Clone(),
+        b6 = (ButtonModel)this.b6.Clone(),
+        b7 = (ButtonModel)this.b7.Clone(),
+        b8 = (ButtonModel)this.b8.Clone(),
+        b9 = (ButtonModel)this.b9.Clone(),
+      };
+
+      return returnContents;
     }
   }
 }

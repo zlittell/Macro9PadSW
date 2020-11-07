@@ -16,8 +16,6 @@ namespace Macro9Pad.Device.Models
 
     private InitializedStatuses deviceInitialization;
 
-    private RGBModel rgb;
-
     private DeviceContentsModel contents;
 
     /// <summary>
@@ -64,21 +62,6 @@ namespace Macro9Pad.Device.Models
 
     /// <summary>Gets USB IDevice.</summary>
     public IDevice Device { get; private set; }
-
-    /// <summary>Gets or sets RGBModel of device.</summary>
-    public RGBModel RGB
-    {
-      get
-      {
-        return this.rgb;
-      }
-
-      set
-      {
-        this.rgb = value;
-        this.NotifyOfPropertyChange(() => this.RGB);
-      }
-    }
 
     /// <summary>Gets or sets Contents of device.</summary>
     public DeviceContentsModel Contents

@@ -11,6 +11,9 @@ namespace Macro9Pad.Device.Models
   /// </summary>
   public class RGBModel : ICloneable
   {
+    // Red, Green, Blue, Brightness (1byte ea)
+    private const int RGBModelLength = 1 + 1 + 1 + 1;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="RGBModel"/> class.
     /// </summary>
@@ -20,6 +23,27 @@ namespace Macro9Pad.Device.Models
       this.Green = 0xFF;
       this.Blue = 0xFF;
       this.Brightness = 0xFF;
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RGBModel"/> class.
+    /// </summary>
+    /// <param name="data">byte array to build RGB LED model with.</param>
+    public RGBModel(byte[] data)
+    {
+      if (data == null)
+      {
+        throw new ArgumentNullException(nameof(data));
+      }
+      else if (data.Length!= RGBModelLength)
+      {
+        throw new ArgumentOutOfRangeException(nameof(data), "Length must match RGB model length");
+      }
+
+      this.Red = data[0];
+      this.Green = data[1];
+      this.Blue = data[2];
+      this.Brightness = data[3];
     }
 
     /// <summary>

@@ -1,7 +1,10 @@
 ﻿using Caliburn.Micro;
 using Device.Net;
+using Macro9Pad.Device.EventModels;
+using Macro9Pad.Device.Messages;
 using Macro9Pad.Device.Models;
 using MSF.USBConnector;
+using MSF.USBMessages;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -160,8 +163,8 @@ namespace Macro9Pad.Device
     public void RefreshFilteredDeviceList()
     {
       Task.Run(async () => { await this.UpdateUSBHIDDeviceList().ConfigureAwait(true); }).Wait();
-      this.USBDeviceList.RemoveAll(this.DoesNotContainCorrectInferface);
-      this.uiMessenger.DeviceConnectorUpdated();
+      this.USBDeviceList.RemoveAll(this.DoesNotContainCorrectInterface);
+      this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceConnectorChangeEvent());
     }
 
     /// <summary>Sends the get device version command.</summary>
@@ -173,10 +176,14 @@ namespace Macro9Pad.Device
     /// <summary>Sends the enter bootloader command.</summary>
     public void EnterBootloader()
     {
-      _ = this.SendUSBMessage(new SendableCommandEnterBootloaderMessage());
+      _ = this.SendUSBMessage(new SendableCommandBootloaderMessage());
     }
 
-    public void RequestDevice()
+    public void RequestDeviceContents()
+    {
+    }
+
+    public void RequestDeviceSerialNumber()
     {
     }
 
@@ -188,5 +195,5 @@ namespace Macro9Pad.Device
     {
       return !obj.DeviceId.ContainsIgnoreCase(usbInterface);
     }
-
   }
+}
