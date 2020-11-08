@@ -22,6 +22,9 @@ namespace Macro9Pad.Device.Models
     EnterBootloader = 0xC0,
 
     /// <summary>Request device send its version to PC.</summary>
-    GetDeviceVersion = 0xC1
+    GetDeviceVersion = 0xC1,
+
+    /// <summary>Request device send its serial number to PC.</summary>
+    GetSerialNumber = 0xC2
   }
 }

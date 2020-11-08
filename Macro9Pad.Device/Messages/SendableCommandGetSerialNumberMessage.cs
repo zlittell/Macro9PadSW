@@ -8,12 +8,12 @@ using System;
 
 namespace Macro9Pad.Device.Messages
 {
-  /// <summary>Message class for requesting device version command.</summary>
-  public class SendableCommandGetDeviceVersionMessage : MacroPadSendableUSBMessage, IMacroPadUSBMessage, ISendableUSBMessage
+  /// <summary>Message class for requesting device serial number command.</summary>
+  public class SendableCommandGetSerialNumberMessage : MacroPadSendableUSBMessage, IMacroPadUSBMessage, ISendableUSBMessage
   {
-    public SendableCommandGetDeviceVersionMessage()
+    public SendableCommandGetSerialNumberMessage()
       : base(
-          (byte)MacroPadCommandType.GetDeviceVersion,
+          (byte)MacroPadCommandType.GetSerialNumber,
           Array.Empty<byte>())
     {
     }

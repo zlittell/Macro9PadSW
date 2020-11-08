@@ -146,11 +146,51 @@ namespace Macro9Pad.Device
     /// <inheritdoc/>
     public override void ParsePayload(ReadResult receivedData)
     {
-    }
+      IReceivableUSBMessage message = null;
 
-    /// <inheritdoc/>
-    public override void ReceivedUSBMessageHandler(IReceivableUSBMessage message)
-    {
+      switch (receivedData.Data[0])
+      {
+        case (byte)MacroPadCommandType.EnterBootloader:
+        {
+          message = MacroPadReceivableUSBMessage.FromBytes<ReceivableCommandBootloaderMessage>(receivedData.Data);
+          break;
+        }
+
+        case (byte)MacroPadCommandType.GetDeviceVersion:
+        {
+           message = MacroPadReceivableUSBMessage.FromBytes<ReceivableCommandGetDeviceVersionMessage>(receivedData.Data);
+          break;
+        }
+
+        case (byte)MacroPadCommandType.GetSerialNumber:
+        {
+          message = MacroPadReceivableUSBMessage.FromBytes<ReceivableCommandGetDeviceSerialNumberMessage>(receivedData.Data);
+          break;
+        }
+
+        case (byte)MacroPadCommandType.ReceiveProfile:
+        {
+          message = MacroPadReceivableUSBMessage.FromBytes<ReceivableCommandTransferProfileMessage>(receivedData.Data);
+          break;
+        }
+
+        case (byte)MacroPadCommandType.SaveProfile:
+        {
+          message = MacroPadReceivableUSBMessage.FromBytes<ReceivableCommandSaveProfileMessage>(receivedData.Data);
+          break;
+        }
+
+        case (byte)MacroPadCommandType.SendProfile:
+        {
+          message = MacroPadReceivableUSBMessage.FromBytes<ReceivableCommandRequestProfileMessage>(receivedData.Data);
+          break;
+        }
+      }
+
+      if (message != null)
+      {
+        this.ReceivedUSBMessageHandler(message);
+      }
     }
 
     /// <summary>Adds this device to List of DeviceFilters.</summary>
@@ -181,14 +221,17 @@ namespace Macro9Pad.Device
 
     public void RequestDeviceContents()
     {
+      _ = this.SendUSBMessage(new SendableCommandRequestProfileMessage());
     }
 
     public void RequestDeviceSerialNumber()
     {
+      _ = this.SendUSBMessage(new SendableCommandGetSerialNumberMessage());
     }
 
-    public void SendProfile()
+    public void SendProfile(DeviceContentsModel contents)
     {
+      _ = this.SendUSBMessage(new SendableCommandTransferProfileMessage(contents));
     }
 
     private bool DoesNotContainCorrectInterface(IDevice obj)

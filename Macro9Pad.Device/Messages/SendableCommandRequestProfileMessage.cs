@@ -8,6 +8,7 @@ using System;
 
 namespace Macro9Pad.Device.Messages
 {
+  /// <summary>Message class for sending request to transfer device contents to host command.</summary>
   public class SendableCommandRequestProfileMessage : MacroPadSendableUSBMessage, IMacroPadUSBMessage, ISendableUSBMessage
   {
     public SendableCommandRequestProfileMessage()

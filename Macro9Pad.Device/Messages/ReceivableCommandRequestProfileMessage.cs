@@ -1,14 +1,11 @@
 ﻿using Macro9Pad.Device.Models;
 using MSF.USBMessages;
-using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Text;
 
 namespace Macro9Pad.Device.Messages
 {
-  public class ReceivableCommandProfileMessage : MacroPadReceivableUSBMessage, IMacroPadUSBMessage, IReceivableUSBMessage
+  public class ReceivableCommandRequestProfileMessage : MacroPadReceivableUSBMessage, IMacroPadUSBMessage, IReceivableUSBMessage
   {
     /// <inheritdoc/>
     public override byte Command => (byte)MacroPadCommandType.SendProfile;

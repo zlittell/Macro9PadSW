@@ -8,6 +8,7 @@ using System;
 
 namespace Macro9Pad.Device.Messages
 {
+  /// <summary>Message class for request to enter bootloader command.</summary>
   public class SendableCommandBootloaderMessage : MacroPadSendableUSBMessage, IMacroPadUSBMessage, ISendableUSBMessage
   {
     public SendableCommandBootloaderMessage()

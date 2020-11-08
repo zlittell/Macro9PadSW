@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Macro9Pad.Device.Messages
 {
+  /// <summary>Message class for transfering a profile to device command.</summary>
   public class SendableCommandTransferProfileMessage : MacroPadSendableUSBMessage, IMacroPadUSBMessage, ISendableUSBMessage
   {
     public SendableCommandTransferProfileMessage(DeviceContentsModel profile)
