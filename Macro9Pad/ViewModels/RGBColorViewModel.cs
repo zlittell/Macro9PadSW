@@ -3,8 +3,8 @@
 // </copyright>
 
 using Caliburn.Micro;
+using Macro9Pad.Device.Models;
 using Macro9Pad.EventModels;
-using Macro9Pad.Models;
 
 namespace Macro9Pad.ViewModels
 {

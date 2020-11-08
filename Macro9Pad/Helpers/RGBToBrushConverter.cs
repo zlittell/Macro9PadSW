@@ -6,7 +6,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
-using Macro9Pad.Models;
+using Macro9Pad.Device.Models;
 
 namespace Macro9Pad.Helpers
 {

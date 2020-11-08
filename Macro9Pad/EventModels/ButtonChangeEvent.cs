@@ -2,7 +2,7 @@
 // Copyright © Mechanical Squid Factory Licensed under the Unlicense.
 // </copyright>
 
-using Macro9Pad.Models;
+using Macro9Pad.Device.Models;
 
 namespace Macro9Pad.EventModels
 {

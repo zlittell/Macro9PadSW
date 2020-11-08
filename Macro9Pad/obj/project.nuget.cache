@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "d8JWG9QnbWot0WaOitGdMiD6hoZBW0eA8Vzp9/cT3BHusFiwHuAbMN7+m9CSBG2CL6RLzyb5FgPbTOWR8/rHnA==",
+  "dgSpecHash": "WAO7yoENirsbnH+nXVM17pEmAO19DZ0GBrM7H0QTn27n3dl2GYLolfIim18AwGEdQcOEKNF3cD3coW9do1EOpA==",
   "success": true,
   "projectFilePath": "C:\\Users\\zlitt\\source\\repos\\Macro9Pad\\Macro9Pad\\Macro9Pad.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\zlitt\\.nuget\\packages\\caliburn.micro\\4.0.136-rc\\caliburn.micro.4.0.136-rc.nupkg.sha512",
     "C:\\Users\\zlitt\\.nuget\\packages\\caliburn.micro.core\\4.0.136-rc\\caliburn.micro.core.4.0.136-rc.nupkg.sha512",
+    "C:\\Users\\zlitt\\.nuget\\packages\\device.net\\3.1.0\\device.net.3.1.0.nupkg.sha512",
+    "C:\\Users\\zlitt\\.nuget\\packages\\hid.net\\3.1.0\\hid.net.3.1.0.nupkg.sha512",
     "C:\\Users\\zlitt\\.nuget\\packages\\microsoft.codeanalysis.fxcopanalyzers\\3.3.1\\microsoft.codeanalysis.fxcopanalyzers.3.3.1.nupkg.sha512",
     "C:\\Users\\zlitt\\.nuget\\packages\\microsoft.codeanalysis.versioncheckanalyzer\\3.3.1\\microsoft.codeanalysis.versioncheckanalyzer.3.3.1.nupkg.sha512",
     "C:\\Users\\zlitt\\.nuget\\packages\\microsoft.codequality.analyzers\\3.3.1\\microsoft.codequality.analyzers.3.3.1.nupkg.sha512",
@@ -88,7 +90,8 @@
     "C:\\Users\\zlitt\\.nuget\\packages\\system.threading.tasks.extensions\\4.3.0\\system.threading.tasks.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\zlitt\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\zlitt\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\zlitt\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\zlitt\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\zlitt\\.nuget\\packages\\usb.net\\3.1.0\\usb.net.3.1.0.nupkg.sha512"
   ],
   "logs": []
 }

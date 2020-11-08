@@ -6,6 +6,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using Macro9Pad.Device.Models;
 using Macro9Pad.EventModels;
 
 namespace Macro9Pad
@@ -36,55 +37,55 @@ namespace Macro9Pad
       {
         case 1:
         {
-          this.deviceContents.Button1 = message.Button;
+          this.deviceContents.Contents.Button1 = message.Button;
           break;
         }
 
         case 2:
         {
-          this.deviceContents.Button2 = message.Button;
+          this.deviceContents.Contents.Button2 = message.Button;
           break;
         }
 
         case 3:
         {
-          this.deviceContents.Button3 = message.Button;
+          this.deviceContents.Contents.Button3 = message.Button;
           break;
         }
 
         case 4:
         {
-          this.deviceContents.Button4 = message.Button;
+          this.deviceContents.Contents.Button4 = message.Button;
           break;
         }
 
         case 5:
         {
-          this.deviceContents.Button5 = message.Button;
+          this.deviceContents.Contents.Button5 = message.Button;
           break;
         }
 
         case 6:
         {
-          this.deviceContents.Button6 = message.Button;
+          this.deviceContents.Contents.Button6 = message.Button;
           break;
         }
 
         case 7:
         {
-          this.deviceContents.Button7 = message.Button;
+          this.deviceContents.Contents.Button7 = message.Button;
           break;
         }
 
         case 8:
         {
-          this.deviceContents.Button8 = message.Button;
+          this.deviceContents.Contents.Button8 = message.Button;
           break;
         }
 
         case 9:
         {
-          this.deviceContents.Button9 = message.Button;
+          this.deviceContents.Contents.Button9 = message.Button;
           break;
         }
 
@@ -101,7 +102,7 @@ namespace Macro9Pad
     /// <inheritdoc/>
     public Task HandleAsync(RGBChangeEvent message, CancellationToken cancellationToken)
     {
-      this.deviceContents.RGB = message?.RGBValues;
+      this.deviceContents.Contents.RGB = message?.RGBValues;
       this.NotifyOfPropertyChange(() => this.deviceContents);
       return Task.CompletedTask;
     }

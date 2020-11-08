@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using Caliburn.Micro;
+using Macro9Pad.Device.Models;
 using Macro9Pad.EventModels;
 using Macro9Pad.Helpers;
-using Macro9Pad.Models;
 
 namespace Macro9Pad.ViewModels
 {
@@ -35,17 +35,17 @@ namespace Macro9Pad.ViewModels
       this.eventAggregator = evAgg;
     }
 
-    /// <summary>Gets button to edit.</summary>
-    public ButtonModel ButtonEdit { get; }
-
     /// <summary>Gets list of keycodes to bind to.</summary>
-    public IEnumerable<HIDKeyboardScanCode> BindableKeyboardScanCodes
+    public static IEnumerable<HIDKeyboardScanCode> BindableKeyboardScanCodes
     {
       get
       {
         return Enum.GetValues(typeof(HIDKeyboardScanCode)).Cast<HIDKeyboardScanCode>();
       }
     }
+
+    /// <summary>Gets button to edit.</summary>
+    public ButtonModel ButtonEdit { get; }
 
     /// <summary>Gets or sets the currently selected scan code.</summary>
     public HIDKeyboardScanCode SelectedScancode

@@ -4,7 +4,7 @@
 
 using System;
 using Caliburn.Micro;
-using Macro9Pad.Models;
+using Macro9Pad.Device.Models;
 
 namespace Macro9Pad.ViewModels
 {
@@ -49,7 +49,7 @@ namespace Macro9Pad.ViewModels
     public void RGBEdit()
     {
       this.windowManager.ShowDialogAsync(
-          new RGBColorViewModel(this.eventAggregator, (RGBModel)this.deviceContents.RGB.Clone()));
+          new RGBColorViewModel(this.eventAggregator, (RGBModel)this.deviceContents.Contents.RGB.Clone()));
     }
 
     /// <summary>
@@ -63,55 +63,55 @@ namespace Macro9Pad.ViewModels
       {
         case 1:
         {
-          button = this.deviceContents.Button1;
+          button = this.deviceContents.Contents.Button1;
           break;
         }
 
         case 2:
         {
-          button = this.deviceContents.Button2;
+          button = this.deviceContents.Contents.Button2;
           break;
         }
 
         case 3:
         {
-          button = this.deviceContents.Button3;
+          button = this.deviceContents.Contents.Button3;
           break;
         }
 
         case 4:
         {
-          button = this.deviceContents.Button4;
+          button = this.deviceContents.Contents.Button4;
           break;
         }
 
         case 5:
         {
-          button = this.deviceContents.Button5;
+          button = this.deviceContents.Contents.Button5;
           break;
         }
 
         case 6:
         {
-          button = this.deviceContents.Button6;
+          button = this.deviceContents.Contents.Button6;
           break;
         }
 
         case 7:
         {
-          button = this.deviceContents.Button7;
+          button = this.deviceContents.Contents.Button7;
           break;
         }
 
         case 8:
         {
-          button = this.deviceContents.Button8;
+          button = this.deviceContents.Contents.Button8;
           break;
         }
 
         case 9:
         {
-          button = this.deviceContents.Button9;
+          button = this.deviceContents.Contents.Button9;
           break;
         }
 

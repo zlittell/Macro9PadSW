@@ -31,10 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EditorConfigFiles Include="..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Caliburn.Micro" Version="4.0.136-rc" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1">
       <PrivateAssets>all</PrivateAssets>
@@ -44,6 +40,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Macro9Pad.Device\Macro9Pad.Device.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
-using Macro9Pad.Models;
+using Macro9Pad.Device.Models;
 using Macro9Pad.ViewModels;
 
 namespace Macro9Pad

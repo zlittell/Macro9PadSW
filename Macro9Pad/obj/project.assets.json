@@ -29,6 +29,27 @@
           "lib/netstandard1.1/Caliburn.Micro.Core.dll": {}
         }
       },
+      "Device.Net/3.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Device.Net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Device.Net.dll": {}
+        }
+      },
+      "Hid.Net/3.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Device.Net": "3.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Hid.Net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Hid.Net.dll": {}
+        }
+      },
       "Microsoft.CodeAnalysis.FxCopAnalyzers/3.3.1": {
         "type": "package",
         "dependencies": {
@@ -1341,6 +1362,57 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "Usb.Net/3.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Device.Net": "3.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Usb.Net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Usb.Net.dll": {}
+        }
+      },
+      "Macro9Pad.Device/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "MSF.USBConnector": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Macro9Pad.Device.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Macro9Pad.Device.dll": {}
+        }
+      },
+      "MSF.USBConnector/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Caliburn.Micro.Core": "4.0.136-rc",
+          "Hid.Net": "3.1.0",
+          "MSF.USBMessages": "1.0.0",
+          "Usb.Net": "3.1.0"
+        },
+        "compile": {
+          "bin/placeholder/MSF.USBConnector.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MSF.USBConnector.dll": {}
+        }
+      },
+      "MSF.USBMessages/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/MSF.USBMessages.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MSF.USBMessages.dll": {}
+        }
       }
     }
   },
@@ -1401,6 +1473,38 @@
         "lib/xamarinios10/Caliburn.Micro.Core.dll",
         "lib/xamarinios10/Caliburn.Micro.Core.pdb",
         "lib/xamarinios10/Caliburn.Micro.Core.xml"
+      ]
+    },
+    "Device.Net/3.1.0": {
+      "sha512": "BzBAJ1LaR4b6WaxKmDln5jpJU8SmHL0zZBnjqhYb+v+ebXBR/kAVNN1SX3LJby9JeZel1NBz+OX1rhR43hNwqw==",
+      "type": "package",
+      "path": "device.net/3.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "device.net.3.1.0.nupkg.sha512",
+        "device.net.nuspec",
+        "lib/net45/Device.Net.dll",
+        "lib/netstandard2.0/Device.Net.dll",
+        "lib/uap10.0/Device.Net.UWP.dll",
+        "lib/uap10.0/Device.Net.dll"
+      ]
+    },
+    "Hid.Net/3.1.0": {
+      "sha512": "DI4TQI+0PmmBP9vqkZfKy+i+ATPGa4pdPCNp3E2HF94S3LK5C/PBhJLimYP15ujX27jHMrA7D7FylBmm9K9bWA==",
+      "type": "package",
+      "path": "hid.net/3.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "hid.net.3.1.0.nupkg.sha512",
+        "hid.net.nuspec",
+        "lib/net45/Hid.Net.dll",
+        "lib/netstandard2.0/Hid.Net.dll",
+        "lib/uap10.0/Hid.Net.UWP.dll",
+        "lib/uap10.0/Hid.Net.dll"
       ]
     },
     "Microsoft.CodeAnalysis.FxCopAnalyzers/3.3.1": {
@@ -5303,11 +5407,45 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "Usb.Net/3.1.0": {
+      "sha512": "b18+yNT/2R4AW6IWu+Hr5Dct/YzEyenWjCcIaldhwcJbZSBLdVThBT3/xSqbxBfddtZ9OsW/cQCtXw4P7nu+pg==",
+      "type": "package",
+      "path": "usb.net/3.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "lib/MonoAndroid/Usb.Net.Android.dll",
+        "lib/MonoAndroid/Usb.Net.dll",
+        "lib/net45/Usb.Net.dll",
+        "lib/netstandard2.0/Usb.Net.dll",
+        "lib/uap10.0/Usb.Net.UWP.dll",
+        "lib/uap10.0/Usb.Net.dll",
+        "usb.net.3.1.0.nupkg.sha512",
+        "usb.net.nuspec"
+      ]
+    },
+    "Macro9Pad.Device/1.0.0": {
+      "type": "project",
+      "path": "../Macro9Pad.Device/Macro9Pad.Device.csproj",
+      "msbuildProject": "../Macro9Pad.Device/Macro9Pad.Device.csproj"
+    },
+    "MSF.USBConnector/1.0.0": {
+      "type": "project",
+      "path": "../MSF_USB/MSF.USBConnector/MSF.USBConnector.csproj",
+      "msbuildProject": "../MSF_USB/MSF.USBConnector/MSF.USBConnector.csproj"
+    },
+    "MSF.USBMessages/1.0.0": {
+      "type": "project",
+      "path": "../MSF_USB/MSF.USBMessages/MSF.USBMessages.csproj",
+      "msbuildProject": "../MSF_USB/MSF.USBMessages/MSF.USBMessages.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Caliburn.Micro >= 4.0.136-rc",
+      "Macro9Pad.Device >= 1.0.0",
       "Microsoft.CodeAnalysis.FxCopAnalyzers >= 3.3.1",
       "StyleCop.Analyzers >= 1.2.0-beta.261"
     ]
@@ -5342,7 +5480,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\zlitt\\source\\repos\\Macro9Pad\\Macro9Pad.Device\\Macro9Pad.Device.csproj": {
+              "projectPath": "C:\\Users\\zlitt\\source\\repos\\Macro9Pad\\Macro9Pad.Device\\Macro9Pad.Device.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
