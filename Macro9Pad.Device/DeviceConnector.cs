@@ -8,6 +8,7 @@ using MSF.USBMessages;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,22 +17,30 @@ namespace Macro9Pad.Device
 {
   public class DeviceConnector : USBDeviceConnector, IUSBDeviceConnector
   {
-    private const uint usbVID = 0x0000;
+    private const uint usbVID = 0x1209;
 
-    private const uint usbPID = 0x0000;
+    private const uint usbPID = 0x9001;
 
     private const string usbInterface = "MI_00";
 
     private readonly IEventAggregator eventAggregator;
 
+    private readonly USBMessageHandler usbMessageHandler;
+
     private DeviceModel macroDevice;
 
     private CancellationToken continousReadCancellationToken;
 
-    public DeviceConnector(IEventAggregator evAgg)
+    public DeviceConnector(IEventAggregator evAgg, DeviceModel devModel)
       : base(evAgg)
     {
       this.eventAggregator = evAgg;
+      this.macroDevice = devModel;
+      this.usbMessageHandler = new USBMessageHandler(evAgg, this, devModel);
+      this.AddHidDeviceToFilterList(usbVID, usbPID);
+      this.SetupDeviceListener();
+      this.RefreshFilteredDeviceList();
+      Task.Run(() => this.ContinousRead(), this.continousReadCancellationToken);
     }
 
     /// <inheritdoc/>
@@ -158,7 +167,7 @@ namespace Macro9Pad.Device
 
         case (byte)MacroPadCommandType.GetDeviceVersion:
         {
-           message = MacroPadReceivableUSBMessage.FromBytes<ReceivableCommandGetDeviceVersionMessage>(receivedData.Data);
+          message = MacroPadReceivableUSBMessage.FromBytes<ReceivableCommandGetDeviceVersionMessage>(receivedData.Data);
           break;
         }
 
@@ -205,7 +214,21 @@ namespace Macro9Pad.Device
       Task.Run(async () => { await this.UpdateUSBHIDDeviceList().ConfigureAwait(true); }).Wait();
       this.USBDeviceList.RemoveAll(this.DoesNotContainCorrectInterface);
       this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceConnectorChangeEvent());
+
+      //check if there is a currently selected device
+      if (USBDeviceList.Count > 0)
+      {
+        if (this.macroDevice.Device != null & this.USBDeviceList.Contains(this.macroDevice.Device))
+        {
+          this.SelectDevice(this.macroDevice.Device);
+        }
+        else
+        {
+          this.SelectDevice(this.USBDeviceList.First());
+        }
+      }
     }
+
 
     private bool DoesNotContainCorrectInterface(IDevice obj)
     {

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "WAO7yoENirsbnH+nXVM17pEmAO19DZ0GBrM7H0QTn27n3dl2GYLolfIim18AwGEdQcOEKNF3cD3coW9do1EOpA==",
+  "dgSpecHash": "BLzENgBX0gimzrY/iDBrpOpwSWGuZxzbv3Rjr9AOivI06IIlnCXVvau1/HJqSL/OPRcfVzSANIAlfOddcoRqVQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\zlitt\\source\\repos\\Macro9Pad\\Macro9Pad\\Macro9Pad.csproj",
   "expectedPackageFiles": [
@@ -90,8 +90,7 @@
     "C:\\Users\\zlitt\\.nuget\\packages\\system.threading.tasks.extensions\\4.3.0\\system.threading.tasks.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\zlitt\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\zlitt\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\zlitt\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\zlitt\\.nuget\\packages\\usb.net\\3.1.0\\usb.net.3.1.0.nupkg.sha512"
+    "C:\\Users\\zlitt\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

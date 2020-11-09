@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
+using Macro9Pad.Device;
 using Macro9Pad.Device.Models;
 using Macro9Pad.ViewModels;
 
@@ -34,11 +35,13 @@ namespace Macro9Pad
           .Singleton<IWindowManager, WindowManager>()
           .Singleton<DeviceModel>()
           .Singleton<IEventAggregator, EventAggregator>()
-          .Singleton<DeviceEventProcessor>();
+          .Singleton<DeviceEventProcessor>()
+          .Singleton<DeviceConnector>();
 
       // Instantiate any singletons ahead of time
       this.container.GetInstance<DeviceModel>();
       this.container.GetInstance<DeviceEventProcessor>();
+      this.container.GetInstance<DeviceConnector>();
 
       // Register all viewmodels with container
       this.GetType().Assembly.GetTypes()

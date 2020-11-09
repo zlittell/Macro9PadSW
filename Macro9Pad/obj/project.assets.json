@@ -1363,18 +1363,6 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "Usb.Net/3.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Device.Net": "3.1.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Usb.Net.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Usb.Net.dll": {}
-        }
-      },
       "Macro9Pad.Device/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -1394,8 +1382,7 @@
         "dependencies": {
           "Caliburn.Micro.Core": "4.0.136-rc",
           "Hid.Net": "3.1.0",
-          "MSF.USBMessages": "1.0.0",
-          "Usb.Net": "3.1.0"
+          "MSF.USBMessages": "1.0.0"
         },
         "compile": {
           "bin/placeholder/MSF.USBConnector.dll": {}
@@ -5406,24 +5393,6 @@
         "ref/xamarinwatchos10/_._",
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
-      ]
-    },
-    "Usb.Net/3.1.0": {
-      "sha512": "b18+yNT/2R4AW6IWu+Hr5Dct/YzEyenWjCcIaldhwcJbZSBLdVThBT3/xSqbxBfddtZ9OsW/cQCtXw4P7nu+pg==",
-      "type": "package",
-      "path": "usb.net/3.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE",
-        "lib/MonoAndroid/Usb.Net.Android.dll",
-        "lib/MonoAndroid/Usb.Net.dll",
-        "lib/net45/Usb.Net.dll",
-        "lib/netstandard2.0/Usb.Net.dll",
-        "lib/uap10.0/Usb.Net.UWP.dll",
-        "lib/uap10.0/Usb.Net.dll",
-        "usb.net.3.1.0.nupkg.sha512",
-        "usb.net.nuspec"
       ]
     },
     "Macro9Pad.Device/1.0.0": {
