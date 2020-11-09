@@ -76,7 +76,7 @@ namespace Macro9Pad.Device
             {
               // Get Device Version
               timeoutWatcher.Restart();
-              this.RequestDeviceVersion();
+              this.eventAggregator.PublishOnBackgroundThreadAsync(new SendableCommandGetDeviceVersionEventModel());
               while (!this.macroDevice.DeviceInitializedVersion & timeoutWatcher.ElapsedMilliseconds < timeoutMilliseconds)
               {
                 continue;
@@ -97,7 +97,7 @@ namespace Macro9Pad.Device
             {
               // Get Serial Number
               timeoutWatcher.Restart();
-              this.RequestDeviceSerialNumber();
+              this.eventAggregator.PublishOnBackgroundThreadAsync(new SendableCommandGetDeviceSerialNumberEventModel());
               while (!this.macroDevice.DeviceInitializedSerialNumber & timeoutWatcher.ElapsedMilliseconds < timeoutMilliseconds)
               {
                 continue;
@@ -118,7 +118,7 @@ namespace Macro9Pad.Device
             {
               // Get Device Contents
               timeoutWatcher.Restart();
-              this.RequestDeviceContents();
+              this.eventAggregator.PublishOnBackgroundThreadAsync(new SendableCommandRequestProfileEventModel());
               while (!this.macroDevice.DeviceInitializedDeviceContents & timeoutWatcher.ElapsedMilliseconds < timeoutMilliseconds)
               {
                 continue;
@@ -205,33 +205,6 @@ namespace Macro9Pad.Device
       Task.Run(async () => { await this.UpdateUSBHIDDeviceList().ConfigureAwait(true); }).Wait();
       this.USBDeviceList.RemoveAll(this.DoesNotContainCorrectInterface);
       this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceConnectorChangeEvent());
-    }
-
-    /// <summary>Sends the get device version command.</summary>
-    public void RequestDeviceVersion()
-    {
-      _ = this.SendUSBMessage(new SendableCommandGetDeviceVersionMessage());
-    }
-
-    /// <summary>Sends the enter bootloader command.</summary>
-    public void EnterBootloader()
-    {
-      _ = this.SendUSBMessage(new SendableCommandBootloaderMessage());
-    }
-
-    public void RequestDeviceContents()
-    {
-      _ = this.SendUSBMessage(new SendableCommandRequestProfileMessage());
-    }
-
-    public void RequestDeviceSerialNumber()
-    {
-      _ = this.SendUSBMessage(new SendableCommandGetSerialNumberMessage());
-    }
-
-    public void SendProfile(DeviceContentsModel contents)
-    {
-      _ = this.SendUSBMessage(new SendableCommandTransferProfileMessage(contents));
     }
 
     private bool DoesNotContainCorrectInterface(IDevice obj)

@@ -5,7 +5,7 @@
 namespace Macro9Pad.Device.EventModels
 {
   /// <summary>Change Event Model to indicate device model has changed.</summary>
-  public class DeviceModelChangeEvent
+  public class DeviceModelChangeEvent : IMacroPadDeviceUIChangeEventModel
   {
   }
 }

@@ -4,7 +4,9 @@
 
 namespace Macro9Pad.Device.EventModels
 {
-  public class DeviceConnectorChangeEvent : IMacroPadDeviceUIChangeEventModel
+#pragma warning disable CA1040 // Avoid empty interfaces
+  public interface IMacroPadDeviceSendableCommandEventModel
+#pragma warning restore CA1040 // Avoid empty interfaces
   {
   }
 }

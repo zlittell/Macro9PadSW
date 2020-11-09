@@ -104,6 +104,29 @@ namespace Macro9Pad.Device.Models
       this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceModelChangeEvent());
     }
 
+    /// <summary>
+    /// Assign Serial Number to device model.
+    /// </summary>
+    /// <param name="receivedSerial">New serial number.</param>
+    public void ProcessDeviceSerialNumber(string receivedSerial)
+    {
+      this.DeviceSerialNumber = receivedSerial ?? throw new ArgumentNullException(nameof(receivedSerial), "Received null serial number");
+      this.deviceInitialization |= InitializedStatuses.SerialNumber;
+      this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceModelChangeEvent());
+    }
+
+    /// <summary>
+    /// Assign Device Contents to device model.
+    /// Used to assign entirely read in contents from USB Device.
+    /// </summary>
+    /// <param name="receivedContents">Contents to set.</param>
+    public void ProcessDeviceContents(DeviceContentsModel receivedContents)
+    {
+      this.Contents = receivedContents;
+      this.deviceInitialization |= InitializedStatuses.DeviceContents;
+      this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceModelChangeEvent());
+    }
+
     /// <summary>Clears model and sets device.</summary>
     /// <param name="device">Device to assign to model.</param>
     public void SetDevice(IDevice device)
