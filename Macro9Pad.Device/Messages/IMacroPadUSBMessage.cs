@@ -8,6 +8,9 @@ namespace Macro9Pad.Device.Messages
 {
   public interface IMacroPadUSBMessage : ISimpleUSBMessage
   {
+    /// <summary>Gets reportID.</summary>
+    byte ReportID { get; }
+
     /// <summary>Gets command.</summary>
     byte Command { get; }
   }

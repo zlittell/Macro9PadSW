@@ -10,6 +10,9 @@ namespace Macro9Pad.Device.Messages
   public class MacroPadUSBMessage : IMacroPadUSBMessage
   {
     /// <inheritdoc/>
+    public virtual byte ReportID { get; internal set; }
+
+    /// <inheritdoc/>
     public virtual byte Command { get; internal set; }
 
     /// <inheritdoc/>
