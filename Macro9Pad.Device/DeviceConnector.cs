@@ -78,7 +78,7 @@ namespace Macro9Pad.Device
 
       if (this.macroDevice.Device != null)
       {
-        while (retries < maxRetries)
+        while (retries < maxRetries & step < 3)
         {
           switch (step)
           {
