@@ -21,7 +21,7 @@ namespace Macro9Pad.Device.Messages
     /// <inheritdoc/>
     public override void ParsePayload(ImmutableArray<byte> payload)
     {
-      this.DeviceSerialNumber = Encoding.ASCII.GetString(payload.ToArray());
+      this.DeviceSerialNumber = Encoding.ASCII.GetString(payload.Take(10).ToArray());
     }
   }
 }

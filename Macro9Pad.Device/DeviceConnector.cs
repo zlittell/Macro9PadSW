@@ -37,10 +37,11 @@ namespace Macro9Pad.Device
       this.eventAggregator = evAgg;
       this.macroDevice = devModel;
       this.usbMessageHandler = new USBMessageHandler(evAgg, this, devModel);
+      Task.Run(() => this.ContinousRead(), this.continousReadCancellationToken);
       this.AddHidDeviceToFilterList(usbVID, usbPID);
       this.SetupDeviceListener();
       this.RefreshFilteredDeviceList();
-      Task.Run(() => this.ContinousRead(), this.continousReadCancellationToken);
+      
     }
 
     /// <inheritdoc/>
