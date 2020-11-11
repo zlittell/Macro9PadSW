@@ -157,7 +157,7 @@ namespace Macro9Pad.Device
     {
       IReceivableUSBMessage message = null;
 
-      switch (receivedData.Data[0])
+      switch (receivedData.Data[1])
       {
         case (byte)MacroPadCommandType.EnterBootloader:
         {

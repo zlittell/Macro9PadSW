@@ -6,6 +6,7 @@ using MSF.USBMessages;
 using System;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Net.Http.Headers;
 
 namespace Macro9Pad.Device.Messages
 {
@@ -30,13 +31,19 @@ namespace Macro9Pad.Device.Messages
         throw new ArgumentNullException(nameof(data));
       }
 
-      if (data[0] != (byte)result.Command)
+      if (data[0] != (byte)result.ReportID)
       {
         throw new ArgumentException(
-          $"{nameof(result.Command)} '{data[0]}' must match expected value of {result.Command}.");
+          $"{nameof(result.ReportID)} '{data[0]}' must match expected value of {result.ReportID}.");
       }
 
-      byte[] dataWithoutHeader = data.Skip(1).Take(data.Length - 1).ToArray();
+      if (data[1] != (byte)result.Command)
+      {
+        throw new ArgumentException(
+          $"{nameof(result.Command)} '{data[1]}' must match expected value of {result.Command}.");
+      }
+
+      byte[] dataWithoutHeader = data.Skip(2).Take(data.Length - 2).ToArray();
       result.Payload = ImmutableArray.ToImmutableArray(dataWithoutHeader.ToArray());
       result.ParsePayload(result.Payload);
       return (T)result;
