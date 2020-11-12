@@ -41,7 +41,6 @@ namespace Macro9Pad.Device
       this.AddHidDeviceToFilterList(usbVID, usbPID);
       this.SetupDeviceListener();
       this.RefreshFilteredDeviceList();
-      
     }
 
     /// <inheritdoc/>

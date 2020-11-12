@@ -73,7 +73,7 @@
                     <Rectangle.StrokeThickness>2</Rectangle.StrokeThickness>
                     <Rectangle.ToolTip>Change RGB LED Color</Rectangle.ToolTip>
                     <Rectangle.Fill>
-                        <Binding Converter="{StaticResource RGBToBrushConverter}" Path="Device.RGB" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
+                        <Binding Converter="{StaticResource RGBToBrushConverter}" Path="Device.Contents.RGB" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
                     </Rectangle.Fill>
                     <b:Interaction.Triggers>
                         <b:EventTrigger EventName="MouseDown">
