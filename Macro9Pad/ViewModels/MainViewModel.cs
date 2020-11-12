@@ -42,7 +42,7 @@ namespace Macro9Pad.ViewModels
     /// <summary>Launch settings edit window.</summary>
     public void EditSettings()
     {
-      this.windowManager.ShowDialogAsync(new SettingsViewModel());
+      this.windowManager.ShowDialogAsync(new SettingsViewModel(this.eventAggregator, this.deviceContents));
     }
 
     /// <summary>Launch RGB edit window.</summary>

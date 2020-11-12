@@ -103,5 +103,17 @@ namespace Macro9Pad.Device.Models
     {
       return new byte[] { (byte)this.Major, (byte)this.Minor, (byte)this.Revision };
     }
+
+    public string ReturnVersionString()
+    {
+      var output = new System.Text.StringBuilder();
+      output.Append("V");
+      output.Append(this.Major.ToString("D2"));
+      output.Append(".");
+      output.Append(this.Minor.ToString("D2"));
+      output.Append(".");
+      output.Append(this.Revision.ToString("D2"));
+      return output.ToString();
+    }
   }
 }

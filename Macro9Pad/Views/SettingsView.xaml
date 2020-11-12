@@ -36,11 +36,11 @@
         </Grid>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
             <Label Content="Device Version:"/>
-            <Label Content="Vaa.bb.cc"/>
+            <Label Content="{Binding Path=DeviceVersion, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
             <Label Content="Serial Number:"/>
-            <Label Content="###########"/>
+            <Label Content="{Binding Path=DeviceSerial, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <Grid Grid.Row="4" Grid.Column="1">
