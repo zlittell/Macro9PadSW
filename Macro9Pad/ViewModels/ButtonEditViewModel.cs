@@ -36,7 +36,7 @@ namespace Macro9Pad.ViewModels
     }
 
     /// <summary>Gets list of keycodes to bind to.</summary>
-    public static IEnumerable<HIDKeyboardScanCode> BindableKeyboardScanCodes
+    public IEnumerable<HIDKeyboardScanCode> BindableKeyboardScanCodes
     {
       get
       {
