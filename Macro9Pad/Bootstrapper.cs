@@ -36,12 +36,14 @@ namespace Macro9Pad
           .Singleton<DeviceModel>()
           .Singleton<IEventAggregator, EventAggregator>()
           .Singleton<DeviceEventProcessor>()
-          .Singleton<DeviceConnector>();
+          .Singleton<DeviceConnector>()
+          .Singleton<ConnectionInfo>();
 
       // Instantiate any singletons ahead of time
       this.container.GetInstance<DeviceModel>();
       this.container.GetInstance<DeviceEventProcessor>();
       this.container.GetInstance<DeviceConnector>();
+      this.container.GetInstance<ConnectionInfo>();
 
       // Register all viewmodels with container
       this.GetType().Assembly.GetTypes()

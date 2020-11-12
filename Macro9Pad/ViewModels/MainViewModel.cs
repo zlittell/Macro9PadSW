@@ -17,17 +17,25 @@ namespace Macro9Pad.ViewModels
 
     private readonly IEventAggregator eventAggregator;
 
+    private readonly ConnectionInfo connectionInfo;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="MainViewModel"/> class.
     /// </summary>
     /// <param name="windowManager">Window manager from caliburn.</param>
     /// <param name="evAgg">Event aggregator from caliburn.</param>
     /// <param name="deviceModel">Device to work with.</param>
-    public MainViewModel(IWindowManager windowManager, IEventAggregator evAgg, DeviceModel deviceModel)
+    /// <param name="connInfo">Connection Info Object from caliburn.</param>
+    public MainViewModel(
+      IWindowManager windowManager,
+      IEventAggregator evAgg,
+      DeviceModel deviceModel,
+      ConnectionInfo connInfo)
     {
       this.windowManager = windowManager;
       this.eventAggregator = evAgg;
       this.deviceContents = deviceModel;
+      this.connectionInfo = connInfo;
     }
 
     /// <summary>Gets the model of the Device being edited.</summary>
@@ -42,7 +50,7 @@ namespace Macro9Pad.ViewModels
     /// <summary>Launch settings edit window.</summary>
     public void EditSettings()
     {
-      this.windowManager.ShowDialogAsync(new SettingsViewModel(this.eventAggregator, this.deviceContents));
+      this.windowManager.ShowDialogAsync(new SettingsViewModel(this.deviceContents, this.connectionInfo));
     }
 
     /// <summary>Launch RGB edit window.</summary>

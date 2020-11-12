@@ -15,7 +15,8 @@ using System.Threading.Tasks;
 
 namespace Macro9Pad.Device
 {
-  public class DeviceConnector : USBDeviceConnector, IUSBDeviceConnector
+  public class DeviceConnector : USBDeviceConnector, IUSBDeviceConnector, 
+    IHandle<SelectDeviceEventModel>, IHandle<RefreshDeviceListEventModel>
   {
     private const uint usbVID = 0x1209;
 
@@ -35,6 +36,7 @@ namespace Macro9Pad.Device
       : base(evAgg)
     {
       this.eventAggregator = evAgg;
+      this.eventAggregator.SubscribeOnBackgroundThread(this);
       this.macroDevice = devModel;
       this.usbMessageHandler = new USBMessageHandler(evAgg, this, devModel);
       Task.Run(() => this.ContinousRead(), this.continousReadCancellationToken);
@@ -54,6 +56,7 @@ namespace Macro9Pad.Device
       set
       {
         this.macroDevice.SetDevice(value);
+        this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceSelectedEventModel(this.macroDevice.Device));
         _ = this.OpenUSBDevice();
         Task.Run(() => this.DeviceModelWatcherStateMachine());
       }
@@ -213,6 +216,7 @@ namespace Macro9Pad.Device
     {
       Task.Run(async () => { await this.UpdateUSBHIDDeviceList().ConfigureAwait(true); }).Wait();
       this.USBDeviceList.RemoveAll(this.DoesNotContainCorrectInterface);
+      var result = this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceListUpdatedEventModel(this.USBDeviceList));
       this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceConnectorChangeEvent());
 
       //check if there is a currently selected device
@@ -229,10 +233,29 @@ namespace Macro9Pad.Device
       }
     }
 
-
     private bool DoesNotContainCorrectInterface(IDevice obj)
     {
       return !obj.DeviceId.ContainsIgnoreCase(usbInterface);
+    }
+
+    public Task HandleAsync(SelectDeviceEventModel message, CancellationToken cancellationToken)
+    {
+      if (message != null)
+      {
+        this.SelectDevice(message.deviceToSelect);
+      }
+
+      return Task.CompletedTask;
+    }
+
+    public Task HandleAsync(RefreshDeviceListEventModel message, CancellationToken cancellationToken)
+    {
+      if (message != null)
+      {
+        this.RefreshFilteredDeviceList();
+      }
+
+      return Task.CompletedTask;
     }
   }
 }
