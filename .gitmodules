@@ -1,0 +1,3 @@
+[submodule "MSF_USB"]
+	path = MSF_USB
+	url = https://github.com/zlittell/MSF_USB.git
