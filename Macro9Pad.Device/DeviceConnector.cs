@@ -216,7 +216,7 @@ namespace Macro9Pad.Device
     {
       Task.Run(async () => { await this.UpdateUSBHIDDeviceList().ConfigureAwait(true); }).Wait();
       this.USBDeviceList.RemoveAll(this.DoesNotContainCorrectInterface);
-      var result = this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceListUpdatedEventModel(this.USBDeviceList));
+      this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceListUpdatedEventModel(this.USBDeviceList));
       this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceConnectorChangeEvent());
 
       //check if there is a currently selected device
