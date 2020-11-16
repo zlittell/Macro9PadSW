@@ -132,22 +132,29 @@ namespace Macro9Pad.ViewModels
       this.windowManager.ShowDialogAsync(new ButtonEditViewModel(this.eventAggregator, buttonNumber, (ButtonModel)button.Clone()));
     }
 
-    /// <summary>Loads a profile.</summary>
+    /// <summary>Loads a profile from device.</summary>
     public void LoadProfile()
     {
-      // Load profile from file
     }
 
-    /// <summary>Save a profile.</summary>
+    /// <summary>Sends a profile to device.</summary>
     public void SaveProfile()
     {
-      // Save profile to file
     }
 
-    /// <summary>Tell device to store a profile.</summary>
+    /// <summary>Tell device to store a profile in NVMemory.</summary>
     public void StoreProfile()
     {
-      // Tell device to save profile to memory
+    }
+
+    /// <summary>Load a profile from file.</summary>
+    public void LoadProfileFromFile()
+    {
+    }
+
+    /// <summary>Save a profile to file.</summary>
+    public void SaveProfileToFile()
+    {
     }
   }
 }
