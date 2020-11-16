@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Windows.Data;
-using System.Windows.Documents;
 using Macro9Pad.Device.Models;
 
 namespace Macro9Pad.Helpers
@@ -40,12 +39,10 @@ namespace Macro9Pad.Helpers
 
     private string ButtonToString(byte button)
     {
-      string output = string.Empty;
       Enum.TryParse(typeof(HIDKeyboardScanCode), button.ToString(), out object enumButton);
       HIDKeyboardScanCode convertedEnumButton = (HIDKeyboardScanCode)enumButton;
 
-      var name = Enum.GetName(typeof(HIDKeyboardScanCode), convertedEnumButton);
-      output = name;
+      string output = EnumHelper.GetEnumDescriptionString(convertedEnumButton);
 
       return output;
     }
@@ -70,11 +67,11 @@ namespace Macro9Pad.Helpers
       int iterateCount = setValues.Count;
       foreach (var singleValue in setValues)
       {
-        var name = Enum.GetName(typeof(HIDKeyboardModifierMasks), singleValue);
+        var name = EnumHelper.GetEnumDescriptionString(singleValue);
 
         if (name != null)
         {
-          if (name != "None")
+          if (name != EnumHelper.GetEnumDescriptionString(HIDKeyboardModifierMasks.None))
           {
             output.Append(name);
             iterateCount--;
