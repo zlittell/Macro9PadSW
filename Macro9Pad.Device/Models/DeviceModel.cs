@@ -26,8 +26,6 @@ namespace Macro9Pad.Device.Models
     {
       this.eventAggregator = eventAggregator;
       this.ClearDeviceModel();
-
-      this.SetDirty();
     }
 
     /// <summary>Enum for tracking how initialized a new device is.</summary>
