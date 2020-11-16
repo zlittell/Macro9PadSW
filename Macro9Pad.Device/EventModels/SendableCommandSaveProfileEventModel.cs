@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// <copyright file="DeviceVersion.cs" company="Mechanical Squid Factory">
+// Copyright © Mechanical Squid Factory Licensed under the Unlicense.
+// </copyright>
 
 namespace Macro9Pad.Device.EventModels
 {
-  class SendableCommandSaveProfileEventModel : IMacroPadDeviceSendableCommandEventModel
+  public class SendableCommandSaveProfileEventModel : IMacroPadDeviceSendableCommandEventModel
   {
   }
 }

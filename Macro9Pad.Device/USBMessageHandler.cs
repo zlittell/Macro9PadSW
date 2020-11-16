@@ -54,6 +54,7 @@ namespace Macro9Pad.Device
         case ReceivableCommandTransferProfileMessage converted:
         {
           // Device has successfully loaded new profile, might be useful for display on app.
+          this.deviceModel.ClearDirty();
           break;
         }
 

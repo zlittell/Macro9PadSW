@@ -6,7 +6,7 @@ using Macro9Pad.Device.Models;
 
 namespace Macro9Pad.Device.EventModels
 {
-  class SendableCommandTransferProfileEventModel : IMacroPadDeviceSendableCommandEventModel
+  public class SendableCommandTransferProfileEventModel : IMacroPadDeviceSendableCommandEventModel
   {
     /// <summary>Gets the contents of the device received from device.</summary>
     public DeviceContentsModel DeviceContents { get; private set; }

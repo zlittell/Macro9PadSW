@@ -92,6 +92,7 @@ namespace Macro9Pad.Device.Models
     public void ClearDirty()
     {
       this.IsDirty = false;
+      this.NotifyOfPropertyChange(() => this.IsDirty);
     }
 
     /// <summary>
@@ -125,6 +126,7 @@ namespace Macro9Pad.Device.Models
     {
       this.Contents = receivedContents;
       this.deviceInitialization |= InitializedStatuses.DeviceContents;
+      this.ClearDirty();
       this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceModelChangeEvent());
     }
 

@@ -4,7 +4,10 @@
 
 using System;
 using Caliburn.Micro;
+using Macro9Pad.Device.EventModels;
+using Macro9Pad.Device.Messages;
 using Macro9Pad.Device.Models;
+using Macro9Pad.EventModels;
 
 namespace Macro9Pad.ViewModels
 {
@@ -135,16 +138,19 @@ namespace Macro9Pad.ViewModels
     /// <summary>Loads a profile from device.</summary>
     public void LoadProfile()
     {
+      this.eventAggregator.PublishOnBackgroundThreadAsync(new LoadFromDeviceEventModel());
     }
 
     /// <summary>Sends a profile to device.</summary>
     public void SaveProfile()
     {
+      this.eventAggregator.PublishOnBackgroundThreadAsync(new SendToDeviceEventModel(this.deviceContents.Contents));
     }
 
     /// <summary>Tell device to store a profile in NVMemory.</summary>
     public void StoreProfile()
     {
+      this.eventAggregator.PublishOnBackgroundThreadAsync(new SaveOnDeviceEventModel());
     }
 
     /// <summary>Load a profile from file.</summary>

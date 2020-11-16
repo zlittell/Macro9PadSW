@@ -6,13 +6,17 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using Macro9Pad.Device.EventModels;
+using Macro9Pad.Device.Messages;
 using Macro9Pad.Device.Models;
 using Macro9Pad.EventModels;
 
 namespace Macro9Pad
 {
   /// <summary>Class for handling events fired into the eventaggregator.</summary>
-  public class DeviceEventProcessor : PropertyChangedBase, IHandle<ButtonChangeEvent>, IHandle<RGBChangeEvent>
+  public class DeviceEventProcessor : PropertyChangedBase, IHandle<ButtonChangeEvent>, 
+    IHandle<RGBChangeEvent>, IHandle<SendToDeviceEventModel>, IHandle<LoadFromDeviceEventModel>,
+    IHandle<SaveOnDeviceEventModel>
   {
     private readonly IEventAggregator eventAggregator;
 
@@ -106,6 +110,28 @@ namespace Macro9Pad
       this.deviceContents.Contents.RGB = message?.RGBValues;
       this.NotifyOfPropertyChange(() => this.deviceContents);
       this.deviceContents.SetDirty();
+      return Task.CompletedTask;
+    }
+
+    public Task HandleAsync(SendToDeviceEventModel message, CancellationToken cancellationToken)
+    {
+      if (message != null)
+      {
+        this.eventAggregator.PublishOnBackgroundThreadAsync(new SendableCommandTransferProfileEventModel(message.Contents), cancellationToken: cancellationToken);
+      }
+
+      return Task.CompletedTask;
+    }
+
+    public Task HandleAsync(LoadFromDeviceEventModel message, CancellationToken cancellationToken)
+    {
+      this.eventAggregator.PublishOnBackgroundThreadAsync(new SendableCommandRequestProfileEventModel(), cancellationToken: cancellationToken);
+      return Task.CompletedTask;
+    }
+
+    public Task HandleAsync(SaveOnDeviceEventModel message, CancellationToken cancellationToken)
+    {
+      this.eventAggregator.PublishOnBackgroundThreadAsync(new SendableCommandSaveProfileEventModel(), cancellationToken: cancellationToken);
       return Task.CompletedTask;
     }
   }
