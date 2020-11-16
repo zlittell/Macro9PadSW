@@ -85,6 +85,7 @@ namespace Macro9Pad.Device.Models
     public void SetDirty()
     {
       this.IsDirty = true;
+      this.NotifyOfPropertyChange(() => this.IsDirty);
     }
 
     /// <summary>Clears the device as dirty and needing updated.</summary>

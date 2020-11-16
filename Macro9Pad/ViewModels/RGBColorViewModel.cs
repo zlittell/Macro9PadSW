@@ -13,6 +13,8 @@ namespace Macro9Pad.ViewModels
   {
     private readonly IEventAggregator eventAggregator;
 
+    private readonly RGBModel originalRGB;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="RGBColorViewModel"/> class.
     /// </summary>
@@ -21,6 +23,7 @@ namespace Macro9Pad.ViewModels
     public RGBColorViewModel(IEventAggregator evAgg, RGBModel rgb)
     {
       this.RGBEdit = rgb;
+      this.originalRGB = (RGBModel)rgb?.Clone();
       this.eventAggregator = evAgg;
     }
 
@@ -82,7 +85,11 @@ namespace Macro9Pad.ViewModels
     /// <summary>Save the edits to the RGB Model.</summary>
     public void SaveButton()
     {
-      this.eventAggregator.PublishOnBackgroundThreadAsync(new RGBChangeEvent(this.RGBEdit));
+      if (this.CheckForChanges())
+      {
+        this.eventAggregator.PublishOnBackgroundThreadAsync(new RGBChangeEvent(this.RGBEdit));
+      }
+
       this.TryCloseAsync();
     }
 
@@ -90,6 +97,19 @@ namespace Macro9Pad.ViewModels
     public void CancelButton()
     {
       this.TryCloseAsync();
+    }
+
+    private bool CheckForChanges()
+    {
+      if ((this.RGBEdit.Red != this.originalRGB.Red) |
+        (this.RGBEdit.Green != this.originalRGB.Green) |
+        (this.RGBEdit.Blue != this.originalRGB.Blue) |
+        (this.RGBEdit.Brightness != this.originalRGB.Brightness))
+      {
+        return true;
+      }
+
+      return false;
     }
   }
 }

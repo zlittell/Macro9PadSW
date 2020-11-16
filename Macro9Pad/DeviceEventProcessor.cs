@@ -96,6 +96,7 @@ namespace Macro9Pad
       }
 
       this.NotifyOfPropertyChange(() => this.deviceContents);
+      this.deviceContents.SetDirty();
       return Task.CompletedTask;
     }
 
@@ -104,6 +105,7 @@ namespace Macro9Pad
     {
       this.deviceContents.Contents.RGB = message?.RGBValues;
       this.NotifyOfPropertyChange(() => this.deviceContents);
+      this.deviceContents.SetDirty();
       return Task.CompletedTask;
     }
   }

@@ -22,6 +22,8 @@ namespace Macro9Pad.ViewModels
 
     private readonly int numberOfButton;
 
+    private readonly ButtonModel originalButton;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ButtonEditViewModel"/> class.
     /// </summary>
@@ -31,6 +33,7 @@ namespace Macro9Pad.ViewModels
     public ButtonEditViewModel(IEventAggregator evAgg, int number, ButtonModel button)
     {
       this.ButtonEdit = button;
+      this.originalButton = button;
       this.numberOfButton = number;
       this.eventAggregator = evAgg;
     }
@@ -64,7 +67,11 @@ namespace Macro9Pad.ViewModels
     /// <summary>Save changes to button.</summary>
     public void SaveButton()
     {
-      this.eventAggregator.PublishOnBackgroundThreadAsync(new ButtonChangeEvent(this.numberOfButton, this.ButtonEdit));
+      if (this.CheckForChanges())
+      {
+        this.eventAggregator.PublishOnBackgroundThreadAsync(new ButtonChangeEvent(this.numberOfButton, this.ButtonEdit));
+      }
+
       this.TryCloseAsync();
     }
 
@@ -147,6 +154,17 @@ namespace Macro9Pad.ViewModels
       {
         this.ButtonEdit.Modifier &= (byte)~modifier;
       }
+    }
+
+    private bool CheckForChanges()
+    {
+      if ((this.ButtonEdit.Modifier != this.originalButton.Modifier) | 
+        (this.ButtonEdit.Button != this.originalButton.Button))
+      {
+        return true;
+      }
+
+      return false;
     }
   }
 }
