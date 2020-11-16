@@ -33,7 +33,7 @@ namespace Macro9Pad.ViewModels
     public ButtonEditViewModel(IEventAggregator evAgg, int number, ButtonModel button)
     {
       this.ButtonEdit = button;
-      this.originalButton = button;
+      this.originalButton = (ButtonModel)button?.Clone();
       this.numberOfButton = number;
       this.eventAggregator = evAgg;
     }
