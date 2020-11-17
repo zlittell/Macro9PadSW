@@ -6,10 +6,12 @@ using MSF.USBMessages;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using MSF.USBConnector.Events;
 
 namespace Macro9Pad.Device
 {
-  public class USBMessageHandler : IHandle<MacroPadReceivableUSBMessage>, IHandle<IMacroPadDeviceSendableCommandEventModel>
+  public class USBMessageHandler : IHandle<MacroPadReceivableUSBMessage>, IHandle<IMacroPadDeviceSendableCommandEventModel>,
+    IHandle<IDeviceListenerEvent>
   {
     private readonly IEventAggregator eventAggregator;
 
@@ -134,6 +136,16 @@ namespace Macro9Pad.Device
       else
       {
         _ = this.deviceConnector.SendUSBMessage(messageToSend);
+      }
+
+      return Task.CompletedTask;
+    }
+
+    public Task HandleAsync(IDeviceListenerEvent message, CancellationToken cancellationToken)
+    {
+      if(message != null)
+      {
+        this.deviceConnector.RefreshFilteredDeviceList();
       }
 
       return Task.CompletedTask;
