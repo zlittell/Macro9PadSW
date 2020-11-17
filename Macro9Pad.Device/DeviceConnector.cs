@@ -222,14 +222,14 @@ namespace Macro9Pad.Device
       //check if there is a currently selected device
       if (USBDeviceList.Count > 0)
       {
-        if (this.macroDevice.Device != null & this.USBDeviceList.Contains(this.macroDevice.Device))
-        {
-          this.SelectDevice(this.macroDevice.Device);
-        }
-        else
+        if (this.macroDevice.Device == null | !(DoesDeviceListContainDevice(this.macroDevice.Device)))
         {
           this.SelectDevice(this.USBDeviceList.First());
         }
+      }
+      else
+      {
+        this.SelectDevice(null);
       }
     }
 

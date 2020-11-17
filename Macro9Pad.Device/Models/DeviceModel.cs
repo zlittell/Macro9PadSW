@@ -45,14 +45,46 @@ namespace Macro9Pad.Device.Models
       DeviceContents,
     }
 
+    public InitializedStatuses DeviceInitialization
+    {
+      get
+      {
+        return this.deviceInitialization;
+      }
+
+      private set
+      {
+        this.deviceInitialization = value;
+        this.NotifyOfPropertyChange(() => this.DeviceInitialization);
+        this.NotifyOfPropertyChange(() => this.DeviceCompletelyInitialized);
+      }
+    }
+
     /// <summary>Gets a value indicating whether Serial Number has been initially read.</summary>
-    public bool DeviceInitializedSerialNumber => this.deviceInitialization.HasFlag(InitializedStatuses.SerialNumber);
+    public bool DeviceInitializedSerialNumber => this.DeviceInitialization.HasFlag(InitializedStatuses.SerialNumber);
 
     /// <summary>Gets a value indicating whether Version has been initially read.</summary>
-    public bool DeviceInitializedVersion => this.deviceInitialization.HasFlag(InitializedStatuses.Version);
+    public bool DeviceInitializedVersion => this.DeviceInitialization.HasFlag(InitializedStatuses.Version);
 
     /// <summary>Gets a value indicating whether Device has been read.</summary>
-    public bool DeviceInitializedDeviceContents => this.deviceInitialization.HasFlag(InitializedStatuses.DeviceContents);
+    public bool DeviceInitializedDeviceContents => this.DeviceInitialization.HasFlag(InitializedStatuses.DeviceContents);
+
+    public bool DeviceCompletelyInitialized
+    {
+      get
+      {
+        if (DeviceInitializedSerialNumber &
+          DeviceInitializedVersion &
+          DeviceInitializedDeviceContents)
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+    }
 
     /// <summary>Gets device version.</summary>
     public DeviceVersionModel Version { get; private set; }
@@ -102,7 +134,7 @@ namespace Macro9Pad.Device.Models
     public void ProcessDeviceVersion(DeviceVersionModel receivedVersion)
     {
       this.Version = receivedVersion ?? throw new ArgumentNullException(nameof(receivedVersion));
-      this.deviceInitialization |= InitializedStatuses.Version;
+      this.DeviceInitialization |= InitializedStatuses.Version;
       this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceModelChangeEvent());
     }
 
@@ -113,7 +145,7 @@ namespace Macro9Pad.Device.Models
     public void ProcessDeviceSerialNumber(string receivedSerial)
     {
       this.DeviceSerialNumber = receivedSerial ?? throw new ArgumentNullException(nameof(receivedSerial), "Received null serial number");
-      this.deviceInitialization |= InitializedStatuses.SerialNumber;
+      this.DeviceInitialization |= InitializedStatuses.SerialNumber;
       this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceModelChangeEvent());
     }
 
@@ -125,7 +157,7 @@ namespace Macro9Pad.Device.Models
     public void ProcessDeviceContents(DeviceContentsModel receivedContents)
     {
       this.Contents = receivedContents;
-      this.deviceInitialization |= InitializedStatuses.DeviceContents;
+      this.DeviceInitialization |= InitializedStatuses.DeviceContents;
       this.ClearDirty();
       this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceModelChangeEvent());
     }
@@ -145,7 +177,7 @@ namespace Macro9Pad.Device.Models
       this.DeviceSerialNumber = string.Empty;
       this.Version = new DeviceVersionModel();
       this.Contents = new DeviceContentsModel();
-      this.deviceInitialization = 0;
+      this.DeviceInitialization = 0;
       this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceModelChangeEvent());
     }
   }
