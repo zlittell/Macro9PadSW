@@ -8,6 +8,7 @@ using Macro9Pad.Device.EventModels;
 using Macro9Pad.Device.Messages;
 using Macro9Pad.Device.Models;
 using Macro9Pad.EventModels;
+using Macro9Pad.Helpers;
 
 namespace Macro9Pad.ViewModels
 {
@@ -156,11 +157,16 @@ namespace Macro9Pad.ViewModels
     /// <summary>Load a profile from file.</summary>
     public void LoadProfileFromFile()
     {
+      ProfileReadWriteHelper readerHelper = new ProfileReadWriteHelper();
+      this.Device.Contents = readerHelper.ReadFile();
+      this.Device.SetDirty();
     }
 
     /// <summary>Save a profile to file.</summary>
     public void SaveProfileToFile()
     {
+      ProfileReadWriteHelper writerHelper = new ProfileReadWriteHelper();
+      writerHelper.WriteFile(this.Device.Contents);
     }
   }
 }

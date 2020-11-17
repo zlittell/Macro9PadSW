@@ -35,7 +35,6 @@ namespace Macro9Pad.Device.Models
 
     private ButtonModel b9;
 
-
     /// <summary>
     /// Initializes a new instance of the <see cref="DeviceContentsModel"/> class.
     /// </summary>
