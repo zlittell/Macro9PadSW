@@ -1,4 +1,8 @@
-﻿using Caliburn.Micro;
+﻿// <copyright file="DeviceVersion.cs" company="Mechanical Squid Factory">
+// Copyright © Mechanical Squid Factory Licensed under the Unlicense.
+// </copyright>
+
+using Caliburn.Micro;
 using Device.Net;
 using Macro9Pad.Device.EventModels;
 using Macro9Pad.Device.Messages;
@@ -6,43 +10,29 @@ using Macro9Pad.Device.Models;
 using MSF.USBConnector;
 using MSF.USBMessages;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Macro9Pad.Device
 {
-  public class DeviceConnector : USBDeviceConnector, IUSBDeviceConnector, 
+  public class DeviceConnector : USBDeviceConnector,
     IHandle<SelectDeviceEventModel>, IHandle<RefreshDeviceListEventModel>
   {
-    private const uint usbVID = 0x1209;
+    protected override string UsbInterface { get => "MI_00"; }
 
-    private const uint usbPID = 0x9001;
-
-    private const string usbInterface = "MI_00";
-
-    private readonly IEventAggregator eventAggregator;
+    protected override FilterDeviceDefinition DeviceDefinition { get => new FilterDeviceDefinition { DeviceType = DeviceType.Hid, VendorId = 0x1209, ProductId = 0x9001 }; }
 
     private readonly USBMessageHandler usbMessageHandler;
 
     private DeviceModel macroDevice;
 
-    private CancellationToken continousReadCancellationToken;
-
     public DeviceConnector(IEventAggregator evAgg, DeviceModel devModel)
       : base(evAgg)
     {
-      this.eventAggregator = evAgg;
-      this.eventAggregator.SubscribeOnBackgroundThread(this);
       this.macroDevice = devModel;
       this.usbMessageHandler = new USBMessageHandler(evAgg, this, devModel);
-      Task.Run(() => this.ContinousRead(), this.continousReadCancellationToken);
-      this.AddHidDeviceToFilterList(usbVID, usbPID);
-      this.SetupDeviceListener();
-      this.RefreshFilteredDeviceList();
+      this.RunAfterInitialized();
     }
 
     /// <inheritdoc/>
@@ -56,7 +46,7 @@ namespace Macro9Pad.Device
       set
       {
         this.macroDevice.SetDevice(value);
-        this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceSelectedEventModel(this.macroDevice.Device));
+        this.EventAggregator.PublishOnBackgroundThreadAsync(new DeviceSelectedEventModel(this.macroDevice.Device));
         _ = this.OpenUSBDevice();
         Task.Run(() => this.DeviceModelWatcherStateMachine());
       }
@@ -88,7 +78,7 @@ namespace Macro9Pad.Device
             {
               // Get Device Version
               timeoutWatcher.Restart();
-              this.eventAggregator.PublishOnBackgroundThreadAsync(new SendableCommandGetDeviceVersionEventModel());
+              this.EventAggregator.PublishOnBackgroundThreadAsync(new SendableCommandGetDeviceVersionEventModel());
               while (!this.macroDevice.DeviceInitializedVersion & timeoutWatcher.ElapsedMilliseconds < timeoutMilliseconds)
               {
                 continue;
@@ -109,7 +99,7 @@ namespace Macro9Pad.Device
             {
               // Get Serial Number
               timeoutWatcher.Restart();
-              this.eventAggregator.PublishOnBackgroundThreadAsync(new SendableCommandGetDeviceSerialNumberEventModel());
+              this.EventAggregator.PublishOnBackgroundThreadAsync(new SendableCommandGetDeviceSerialNumberEventModel());
               while (!this.macroDevice.DeviceInitializedSerialNumber & timeoutWatcher.ElapsedMilliseconds < timeoutMilliseconds)
               {
                 continue;
@@ -130,7 +120,7 @@ namespace Macro9Pad.Device
             {
               // Get Device Contents
               timeoutWatcher.Restart();
-              this.eventAggregator.PublishOnBackgroundThreadAsync(new SendableCommandRequestProfileEventModel());
+              this.EventAggregator.PublishOnBackgroundThreadAsync(new SendableCommandRequestProfileEventModel());
               while (!this.macroDevice.DeviceInitializedDeviceContents & timeoutWatcher.ElapsedMilliseconds < timeoutMilliseconds)
               {
                 continue;
@@ -205,37 +195,10 @@ namespace Macro9Pad.Device
       }
     }
 
-    /// <summary>Adds this device to List of DeviceFilters.</summary>
-    public void AddDeviceToFilter()
+    public override void RefreshFilteredDeviceList()
     {
-      this.AddHidDeviceToFilterList(usbVID, usbPID);
-    }
-
-    /// <summary>Refresh device list and filter it for only this devices correct interface.</summary>
-    public void RefreshFilteredDeviceList()
-    {
-      Task.Run(async () => { await this.UpdateUSBHIDDeviceList().ConfigureAwait(true); }).Wait();
-      this.USBDeviceList.RemoveAll(this.DoesNotContainCorrectInterface);
-      this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceListUpdatedEventModel(this.USBDeviceList));
-      this.eventAggregator.PublishOnBackgroundThreadAsync(new DeviceConnectorChangeEvent());
-
-      //check if there is a currently selected device
-      if (USBDeviceList.Count > 0)
-      {
-        if (this.macroDevice.Device == null | !(DoesDeviceListContainDevice(this.macroDevice.Device)))
-        {
-          this.SelectDevice(this.USBDeviceList.First());
-        }
-      }
-      else
-      {
-        this.SelectDevice(null);
-      }
-    }
-
-    private bool DoesNotContainCorrectInterface(IDevice obj)
-    {
-      return !obj.DeviceId.ContainsIgnoreCase(usbInterface);
+      base.RefreshFilteredDeviceList();
+      this.EventAggregator.PublishOnBackgroundThreadAsync(new DeviceListUpdatedEventModel(this.USBDeviceList));
     }
 
     public Task HandleAsync(SelectDeviceEventModel message, CancellationToken cancellationToken)
