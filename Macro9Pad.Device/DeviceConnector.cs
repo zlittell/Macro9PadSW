@@ -10,6 +10,7 @@ using Macro9Pad.Device.Models;
 using MSF.USBConnector;
 using MSF.USBMessages;
 using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,17 +22,17 @@ namespace Macro9Pad.Device
   {
     protected override string UsbInterface { get => "MI_00"; }
 
-    protected override FilterDeviceDefinition DeviceDefinition { get => new FilterDeviceDefinition { DeviceType = DeviceType.Hid, VendorId = 0x1209, ProductId = 0x9001 }; }
+    protected override Collection<FilterDeviceDefinition> DeviceFilters
+    {
+      get => new Collection<FilterDeviceDefinition>(){new FilterDeviceDefinition { DeviceType = DeviceType.Hid, VendorId = 0x1209, ProductId = 0x9001 }};
+    }
 
-    private readonly USBMessageHandler usbMessageHandler;
-
-    private DeviceModel macroDevice;
+    private readonly DeviceModel macroDevice;
 
     public DeviceConnector(IEventAggregator evAgg, DeviceModel devModel)
       : base(evAgg)
     {
       this.macroDevice = devModel;
-      this.usbMessageHandler = new USBMessageHandler(evAgg, this, devModel);
       this.RunAfterInitialized();
     }
 
@@ -146,7 +147,7 @@ namespace Macro9Pad.Device
     }
 
     /// <inheritdoc/>
-    public override void ParsePayload(ReadResult receivedData)
+    protected override void ParsePayload(ReadResult receivedData)
     {
       IReceivableUSBMessage message = null;
 

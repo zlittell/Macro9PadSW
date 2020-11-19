@@ -763,11 +763,11 @@ namespace Macro9Pad.Helpers
     [Description("Keypad >")]
     KeyNPGreaterThan = 0xc6,
 
-    /// <summary>Keypad &.</summary>
+    /// <summary>Keypad Ampersand.</summary>
     [Description("Keypad &")]
     KeyNPAmpersand = 0xc7,
 
-    /// <summary>Keypad &&.</summary>
+    /// <summary>Keypad Double Ampersand.</summary>
     [Description("Keypad &&")]
     KeyNPDoubleAmpersand = 0xc8,
 

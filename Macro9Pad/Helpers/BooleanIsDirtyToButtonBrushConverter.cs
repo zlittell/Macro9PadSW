@@ -9,8 +9,10 @@ using System.Windows.Media;
 
 namespace Macro9Pad.Helpers
 {
+  /// <summary>Converts boolean to red button brush.</summary>
   public class BooleanIsDirtyToButtonBrushConverter : IValueConverter
   {
+    /// <inheritdoc/>
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
       if (value != null)
@@ -24,6 +26,7 @@ namespace Macro9Pad.Helpers
       return null;
     }
 
+    /// <inheritdoc/>
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
       throw new NotImplementedException();

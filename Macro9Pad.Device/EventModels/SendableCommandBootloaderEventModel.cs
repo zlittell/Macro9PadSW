@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Macro9Pad.Device.EventModels
 {
-  class SendableCommandBootloaderEventModel : IMacroPadDeviceSendableCommandEventModel
+  public class SendableCommandBootloaderEventModel : IMacroPadDeviceSendableCommandEventModel
   {
   }
 }

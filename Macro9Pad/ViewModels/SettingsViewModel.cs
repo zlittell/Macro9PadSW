@@ -18,16 +18,22 @@ namespace Macro9Pad.ViewModels
   /// <summary>View Model for Settings View.</summary>
   public class SettingsViewModel : Screen, IHandle<ConnectionInfoUpdateEventModel>
   {
-    private ConnectionInfo connectionInfo;
+    private readonly ConnectionInfo connectionInfo;
 
-    private DeviceModel deviceModel;
+    private readonly DeviceModel deviceModel;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SettingsViewModel"/> class.
+    /// </summary>
+    /// <param name="devModel">Device model.</param>
+    /// <param name="connInfo">Connection Info for display.</param>
     public SettingsViewModel(DeviceModel devModel, ConnectionInfo connInfo)
     {
       this.deviceModel = devModel;
       this.connectionInfo = connInfo;
     }
 
+    /// <summary>Gets DeviceVersion for display.</summary>
     public string DeviceVersion
     {
       get
@@ -36,6 +42,7 @@ namespace Macro9Pad.ViewModels
       }
     }
 
+    /// <summary>Gets Serial of device to display.</summary>
     public string DeviceSerial
     {
       get
@@ -44,6 +51,8 @@ namespace Macro9Pad.ViewModels
       }
     }
 
+    /// <summary>Gets list of devices for display.</summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1002:Do not expose generic lists", Justification = "Order, single elements, and removeall")]
     public List<IDevice> DeviceList
     {
       get
@@ -52,6 +61,7 @@ namespace Macro9Pad.ViewModels
       }
     }
 
+    /// <summary>Gets or sets SelectedDevice for display.</summary>
     public IDevice SelectedDevice
     {
       get
@@ -61,14 +71,28 @@ namespace Macro9Pad.ViewModels
 
       set
       {
+        this.connectionInfo.SelectDevice(value);
       }
     }
 
+    /// <summary>Close button pressed.</summary>
     public void CloseSettings()
     {
       this.TryCloseAsync();
     }
 
+    /// <summary>Refresh device list button pressed.</summary>
+    public void RefreshDeviceList()
+    {
+      this.connectionInfo.RefreshDeviceList();
+    }
+
+    /// <summary>
+    /// Handles a ConnectionInfoUpdateEventModel message from event aggregator.
+    /// </summary>
+    /// <param name="message">Message to process.</param>
+    /// <param name="cancellationToken">Task cancellation token.</param>
+    /// <returns>Task state.</returns>
     public Task HandleAsync(ConnectionInfoUpdateEventModel message, CancellationToken cancellationToken)
     {
       if (message != null)
@@ -90,11 +114,6 @@ namespace Macro9Pad.ViewModels
       }
 
       return Task.CompletedTask;
-    }
-
-    public void RefreshDeviceList()
-    {
-      this.connectionInfo.RefreshDeviceList();
     }
   }
 }

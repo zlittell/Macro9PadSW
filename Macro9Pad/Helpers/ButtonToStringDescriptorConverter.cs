@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="ButtonToStringDescriptorConverter.cs" company="Mechanical Squid Factory">
+// Copyright © Mechanical Squid Factory Licensed under the Unlicense.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -7,8 +11,10 @@ using Macro9Pad.Device.Models;
 
 namespace Macro9Pad.Helpers
 {
+  /// <summary>Converts Button values to a string.</summary>
   public class ButtonToStringDescriptorConverter : IValueConverter
   {
+    /// <inheritdoc/>
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
       StringBuilder output = new StringBuilder();
@@ -32,14 +38,20 @@ namespace Macro9Pad.Helpers
       return output.ToString();
     }
 
+    /// <inheritdoc/>
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
       throw new NotImplementedException();
     }
 
+    /// <summary>
+    /// Retrieve string descriptor of button.
+    /// </summary>
+    /// <param name="button">Button to convert.</param>
+    /// <returns>Button as string description.</returns>
     private string ButtonToString(byte button)
     {
-      Enum.TryParse(typeof(HIDKeyboardScanCode), button.ToString(), out object enumButton);
+      Enum.TryParse(typeof(HIDKeyboardScanCode), button.ToString(CultureInfo.InvariantCulture), out object enumButton);
       HIDKeyboardScanCode convertedEnumButton = (HIDKeyboardScanCode)enumButton;
 
       string output = EnumHelper.GetEnumDescriptionString(convertedEnumButton);
@@ -47,10 +59,15 @@ namespace Macro9Pad.Helpers
       return output;
     }
 
+    /// <summary>
+    /// Retrieve string descriptor of modifier.
+    /// </summary>
+    /// <param name="modifier">Modifier to convert.</param>
+    /// <returns>Modifier as string description.</returns>
     private string ModifierToString(byte modifier)
     {
       StringBuilder output = new StringBuilder();
-      Enum.TryParse(typeof(HIDKeyboardModifierMasks), modifier.ToString(), out object convertedMask);
+      Enum.TryParse(typeof(HIDKeyboardModifierMasks), modifier.ToString(CultureInfo.InvariantCulture), out object convertedMask);
       HIDKeyboardModifierMasks convertedModifierMask = (HIDKeyboardModifierMasks)convertedMask;
 
       var possibleEnums = Enum.GetValues(typeof(HIDKeyboardModifierMasks));

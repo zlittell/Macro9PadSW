@@ -39,7 +39,7 @@ namespace Macro9Pad.ViewModels
     }
 
     /// <summary>Gets list of keycodes to bind to.</summary>
-    public IEnumerable<HIDKeyboardScanCode> BindableKeyboardScanCodes
+    public static IEnumerable<HIDKeyboardScanCode> BindableKeyboardScanCodes
     {
       get
       {
@@ -158,7 +158,7 @@ namespace Macro9Pad.ViewModels
 
     private bool CheckForChanges()
     {
-      if ((this.ButtonEdit.Modifier != this.originalButton.Modifier) | 
+      if ((this.ButtonEdit.Modifier != this.originalButton.Modifier) |
         (this.ButtonEdit.Button != this.originalButton.Button))
       {
         return true;

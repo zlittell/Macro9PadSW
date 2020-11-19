@@ -14,7 +14,7 @@ using Macro9Pad.EventModels;
 namespace Macro9Pad
 {
   /// <summary>Class for handling events fired into the eventaggregator.</summary>
-  public class DeviceEventProcessor : PropertyChangedBase, IHandle<ButtonChangeEvent>, 
+  public class DeviceEventProcessor : PropertyChangedBase, IHandle<ButtonChangeEvent>,
     IHandle<RGBChangeEvent>, IHandle<SendToDeviceEventModel>, IHandle<LoadFromDeviceEventModel>,
     IHandle<SaveOnDeviceEventModel>
   {
@@ -113,6 +113,7 @@ namespace Macro9Pad
       return Task.CompletedTask;
     }
 
+    /// <inheritdoc/>
     public Task HandleAsync(SendToDeviceEventModel message, CancellationToken cancellationToken)
     {
       if (message != null)
@@ -123,12 +124,14 @@ namespace Macro9Pad
       return Task.CompletedTask;
     }
 
+    /// <inheritdoc/>
     public Task HandleAsync(LoadFromDeviceEventModel message, CancellationToken cancellationToken)
     {
       this.eventAggregator.PublishOnBackgroundThreadAsync(new SendableCommandRequestProfileEventModel(), cancellationToken: cancellationToken);
       return Task.CompletedTask;
     }
 
+    /// <inheritdoc/>
     public Task HandleAsync(SaveOnDeviceEventModel message, CancellationToken cancellationToken)
     {
       this.eventAggregator.PublishOnBackgroundThreadAsync(new SendableCommandSaveProfileEventModel(), cancellationToken: cancellationToken);

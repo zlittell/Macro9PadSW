@@ -3,6 +3,7 @@
 // </copyright>
 
 using System;
+using System.Globalization;
 
 namespace Macro9Pad.Device.Models
 {
@@ -107,12 +108,12 @@ namespace Macro9Pad.Device.Models
     public string ReturnVersionString()
     {
       var output = new System.Text.StringBuilder();
-      output.Append("V");
-      output.Append(this.Major.ToString("D2"));
-      output.Append(".");
-      output.Append(this.Minor.ToString("D2"));
-      output.Append(".");
-      output.Append(this.Revision.ToString("D2"));
+      output.Append('V');
+      output.Append(this.Major.ToString("D2", CultureInfo.InvariantCulture));
+      output.Append('.');
+      output.Append(this.Minor.ToString("D2", CultureInfo.InvariantCulture));
+      output.Append('.');
+      output.Append(this.Revision.ToString("D2", CultureInfo.InvariantCulture));
       return output.ToString();
     }
   }

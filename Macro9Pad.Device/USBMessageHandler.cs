@@ -17,7 +17,7 @@ namespace Macro9Pad.Device
 
     private readonly DeviceConnector deviceConnector;
 
-    private DeviceModel deviceModel;
+    private readonly DeviceModel deviceModel;
 
     public USBMessageHandler(IEventAggregator evAgg, DeviceConnector connector, DeviceModel device)
     {
@@ -36,7 +36,7 @@ namespace Macro9Pad.Device
 
       switch (message)
       {
-        case ReceivableCommandBootloaderMessage converted:
+        case ReceivableCommandBootloaderMessage _:
         {
           throw new NotImplementedException("Bootloader support is not yet implemented.");
         }
@@ -53,14 +53,14 @@ namespace Macro9Pad.Device
           break;
         }
 
-        case ReceivableCommandTransferProfileMessage converted:
+        case ReceivableCommandTransferProfileMessage _:
         {
           // Device has successfully loaded new profile, might be useful for display on app.
           this.deviceModel.ClearDirty();
           break;
         }
 
-        case ReceivableCommandSaveProfileMessage converted:
+        case ReceivableCommandSaveProfileMessage _:
         {
           // Device has successfully saved a profile to NVMemory, might be useful for display on app.
           break;
@@ -92,31 +92,31 @@ namespace Macro9Pad.Device
 
       switch (message)
       {
-        case SendableCommandBootloaderEventModel converted:
+        case SendableCommandBootloaderEventModel _:
         {
           messageToSend = new SendableCommandBootloaderMessage();
           break;
         }
 
-        case SendableCommandGetDeviceSerialNumberEventModel converted:
+        case SendableCommandGetDeviceSerialNumberEventModel _:
         {
           messageToSend = new SendableCommandGetSerialNumberMessage();
           break;
         }
 
-        case SendableCommandGetDeviceVersionEventModel converted:
+        case SendableCommandGetDeviceVersionEventModel _:
         {
           messageToSend = new SendableCommandGetDeviceVersionMessage();
           break;
         }
 
-        case SendableCommandRequestProfileEventModel converted:
+        case SendableCommandRequestProfileEventModel _:
         {
           messageToSend = new SendableCommandRequestProfileMessage();
           break;
         }
 
-        case SendableCommandSaveProfileEventModel converted:
+        case SendableCommandSaveProfileEventModel _:
         {
           messageToSend = new SendableCommandSaveProfileMessage();
           break;
