@@ -27,6 +27,8 @@ namespace Macro9Pad.Device
       get => new Collection<FilterDeviceDefinition>(){new FilterDeviceDefinition { DeviceType = DeviceType.Hid, VendorId = 0x1209, ProductId = 0x9001 }};
     }
 
+    protected override FilterDeviceDefinition DeviceFilter => new FilterDeviceDefinition { DeviceType = DeviceType.Hid, VendorId = 0x1209, ProductId = 0x9001 };
+
     private readonly DeviceModel macroDevice;
 
     public DeviceConnector(IEventAggregator evAgg, DeviceModel devModel)
@@ -47,7 +49,7 @@ namespace Macro9Pad.Device
       set
       {
         this.macroDevice.SetDevice(value);
-        this.EventAggregator.PublishOnBackgroundThreadAsync(new DeviceSelectedEventModel(this.macroDevice.Device));
+        this.EventAggregator.PublishOnBackgroundThreadAsync(new DeviceSelectedEventModel(this.GetDeviceDefinitionFromDeviceID(this.macroDevice.Device.DeviceId)));
         _ = this.OpenUSBDevice();
         Task.Run(() => this.DeviceModelWatcherStateMachine());
       }
@@ -199,14 +201,14 @@ namespace Macro9Pad.Device
     public override void RefreshFilteredDeviceList()
     {
       base.RefreshFilteredDeviceList();
-      this.EventAggregator.PublishOnBackgroundThreadAsync(new DeviceListUpdatedEventModel(this.USBDeviceList));
+      this.EventAggregator.PublishOnBackgroundThreadAsync(new DeviceListUpdatedEventModel(this.USBConnectedDeviceList));
     }
 
     public Task HandleAsync(SelectDeviceEventModel message, CancellationToken cancellationToken)
     {
       if (message != null)
       {
-        this.SelectDevice(message.deviceToSelect);
+        this.SelectDevice(message.DeviceToSelect);
       }
 
       return Task.CompletedTask;

@@ -4,6 +4,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,9 +21,9 @@ namespace Macro9Pad
   {
     private readonly IEventAggregator eventAggregator;
 
-    private IDevice selectedDevice;
+    private ConnectedDeviceDefinition selectedUSBDevice;
 
-    private List<IDevice> deviceList;
+    private Collection<ConnectedDeviceDefinition> usbDevices;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ConnectionInfo"/> class.
@@ -34,33 +36,32 @@ namespace Macro9Pad
     }
 
     /// <summary>Gets or Sets Selected Device for Display.</summary>
-    public IDevice SelectedDevice
+    public ConnectedDeviceDefinition SelectedUSBDevice
     {
       get
       {
-        return this.selectedDevice;
+        return this.selectedUSBDevice;
       }
 
       set
       {
-        this.selectedDevice = value;
-        this.LetListenersKnowOfPropertyChanged(nameof(this.SelectedDevice));
+        this.selectedUSBDevice = value;
+        this.LetListenersKnowOfPropertyChanged(nameof(this.SelectedUSBDevice));
       }
     }
 
     /// <summary>Gets list of Devices.</summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1002:Do not expose generic lists", Justification = "Order, single elements, and removeall")]
-    public List<IDevice> DeviceList
+    public Collection<ConnectedDeviceDefinition> USBDevices
     {
       get
       {
-        return this.deviceList;
+        return this.usbDevices;
       }
     }
 
     /// <summary>Requests that device connector selects a specific device.</summary>
     /// <param name="newDevice">Device to select.</param>
-    public void SelectDevice(IDevice newDevice)
+    public void SelectDevice(ConnectedDeviceDefinition newDevice)
     {
       this.eventAggregator.PublishOnBackgroundThreadAsync(new SelectDeviceEventModel(newDevice));
     }
@@ -81,7 +82,7 @@ namespace Macro9Pad
     {
       if (message != null)
       {
-        this.SelectedDevice = message.newDevice;
+        this.SelectedUSBDevice = message.NewDevice;
       }
 
       return Task.CompletedTask;
@@ -97,8 +98,8 @@ namespace Macro9Pad
     {
       if (message != null)
       {
-        this.deviceList = message.UpdatedDeviceList;
-        this.LetListenersKnowOfPropertyChanged(nameof(this.DeviceList));
+        this.usbDevices = message.UpdatedDeviceList;
+        this.LetListenersKnowOfPropertyChanged(nameof(this.USBDevices));
       }
 
       return Task.CompletedTask;

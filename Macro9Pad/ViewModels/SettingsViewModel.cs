@@ -4,6 +4,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -52,26 +54,28 @@ namespace Macro9Pad.ViewModels
     }
 
     /// <summary>Gets list of devices for display.</summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1002:Do not expose generic lists", Justification = "Order, single elements, and removeall")]
-    public List<IDevice> DeviceList
+    public Collection<ConnectedDeviceDefinition> USBDevices
     {
       get
       {
-        return this.connectionInfo.DeviceList;
+        return this.connectionInfo.USBDevices;
       }
     }
 
     /// <summary>Gets or sets SelectedDevice for display.</summary>
-    public IDevice SelectedDevice
+    public ConnectedDeviceDefinition SelectedUSBDevice
     {
       get
       {
-        return this.connectionInfo.SelectedDevice;
+        return this.connectionInfo.SelectedUSBDevice;
       }
 
       set
       {
-        this.connectionInfo.SelectDevice(value);
+        if (this.connectionInfo.SelectedUSBDevice != value)
+        {
+          this.connectionInfo.SelectDevice(value);
+        }
       }
     }
 
@@ -99,15 +103,15 @@ namespace Macro9Pad.ViewModels
       {
         switch (message.PropertyName)
         {
-          case nameof(this.DeviceList):
+          case nameof(this.USBDevices):
           {
-            this.NotifyOfPropertyChange(() => this.DeviceList);
+            this.NotifyOfPropertyChange(() => this.USBDevices);
             break;
           }
 
-          case nameof(this.SelectedDevice):
+          case nameof(this.SelectedUSBDevice):
           {
-            this.NotifyOfPropertyChange(() => this.SelectedDevice);
+            this.NotifyOfPropertyChange(() => this.SelectedUSBDevice);
             break;
           }
         }

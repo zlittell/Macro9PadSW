@@ -8,11 +8,11 @@ namespace Macro9Pad.Device.EventModels
 {
   public class DeviceSelectedEventModel
   {
-    public IDevice newDevice { get; private set; }
+    public ConnectedDeviceDefinition NewDevice { get; private set; }
 
-    public DeviceSelectedEventModel(IDevice device)
+    public DeviceSelectedEventModel(ConnectedDeviceDefinition device)
     {
-      this.newDevice = device;
+      this.NewDevice = device;
     }
   }
 }
