@@ -158,8 +158,12 @@ namespace Macro9Pad.ViewModels
     public void LoadProfileFromFile()
     {
       ProfileReadWriteHelper readerHelper = new ProfileReadWriteHelper();
-      this.Device.Contents = readerHelper.ReadFile();
-      this.Device.SetDirty();
+      var readDeviceContents = readerHelper.ReadFile();
+      if (readDeviceContents != null)
+      {
+        this.Device.Contents = readDeviceContents;
+        this.Device.SetDirty();
+      }
     }
 
     /// <summary>Save a profile to file.</summary>
