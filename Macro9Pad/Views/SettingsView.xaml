@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Macro9Pad.Views"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
         Title="Macro9Pad Settings" Height="180" Width="250" Icon="/icons/cpu.png">
     <Grid>
         <Grid.ColumnDefinitions>

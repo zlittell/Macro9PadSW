@@ -43,7 +43,8 @@ namespace Macro9Pad.ViewModels
     {
       get
       {
-        return Enum.GetValues(typeof(HIDKeyboardScanCode)).Cast<HIDKeyboardScanCode>();
+        var temp = Enum.GetValues(typeof(HIDKeyboardScanCode)).Cast<HIDKeyboardScanCode>();
+        return temp;
       }
     }
 
