@@ -5,7 +5,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Forms.VisualStyles;
 using Caliburn.Micro;
 using Macro9Pad.Device.Models;
 using Macro9Pad.EventModels;
@@ -24,6 +27,8 @@ namespace Macro9Pad.ViewModels
 
     private readonly ButtonModel originalButton;
 
+    private IEnumerable<string> keyDescriptions;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ButtonEditViewModel"/> class.
     /// </summary>
@@ -36,27 +41,28 @@ namespace Macro9Pad.ViewModels
       this.originalButton = (ButtonModel)button?.Clone();
       this.numberOfButton = number;
       this.eventAggregator = evAgg;
+      _ = this.PopulateKeyDescriptions();
     }
 
-    /// <summary>Gets list of keycodes to bind to.</summary>
-    public static IEnumerable<HIDKeyboardScanCode> BindableKeyboardScanCodes
+    /// <summary>Gets List of descriptions for keycode enum.</summary>
+    public IEnumerable<string> KeyDescriptions
     {
       get
       {
-        var temp = Enum.GetValues(typeof(HIDKeyboardScanCode)).Cast<HIDKeyboardScanCode>();
-        return temp;
+        return this.keyDescriptions;
       }
     }
 
     /// <summary>Gets button to edit.</summary>
     public ButtonModel ButtonEdit { get; }
 
-    /// <summary>Gets or sets the currently selected scan code.</summary>
-    public HIDKeyboardScanCode SelectedScancode
+    /// <summary>Gets or sets selected key index.</summary>
+    public int SelectedKeyIndex
     {
       get
       {
-        return (HIDKeyboardScanCode)Enum.ToObject(typeof(HIDKeyboardScanCode), this.ButtonEdit.Button);
+        var tempcode = (HIDKeyboardScanCode)Enum.ToObject(typeof(HIDKeyboardScanCode), this.ButtonEdit.Button);
+        return (int)tempcode;
       }
 
       set
@@ -166,6 +172,21 @@ namespace Macro9Pad.ViewModels
       }
 
       return false;
+    }
+
+    private async Task PopulateKeyDescriptions()
+    {
+      await Task.Run(() =>
+      {
+        List<string> descriptionList = new List<string>();
+        EnumDescriptionToStringConverter converter = new EnumDescriptionToStringConverter();
+        foreach (var x in Enum.GetValues(typeof(HIDKeyboardScanCode)))
+        {
+          descriptionList.Add(converter.Convert(x, null, null, null).ToString());
+        }
+
+        this.keyDescriptions = descriptionList;
+      }).ConfigureAwait(false);
     }
   }
 }
