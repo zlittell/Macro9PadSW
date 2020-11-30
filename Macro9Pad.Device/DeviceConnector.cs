@@ -49,7 +49,7 @@ namespace Macro9Pad.Device
       set
       {
         this.macroDevice.SetDevice(value);
-        this.EventAggregator.PublishOnBackgroundThreadAsync(new DeviceSelectedEventModel(this.GetDeviceDefinitionFromDeviceID(this.macroDevice.Device.DeviceId)));
+        this.EventAggregator.PublishOnBackgroundThreadAsync(new DeviceSelectedEventModel(this.GetDeviceDefinitionFromDeviceID(this.macroDevice.Device?.DeviceId)));
         _ = this.OpenUSBDevice();
         Task.Run(() => this.DeviceModelWatcherStateMachine());
       }
