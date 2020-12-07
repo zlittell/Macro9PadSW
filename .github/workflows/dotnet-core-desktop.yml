@@ -38,7 +38,7 @@ jobs:
 
     - name: Test title for Markdown output
       run: |
-            if ${{ github.event_name == 'pull_request' }}
+            if (${{ github.event_name == 'pull_request' }})
             then
               echo "::set-env name=title::Test Run for PR #${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
               echo "::set-env name=file_name::TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
