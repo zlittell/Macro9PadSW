@@ -30,31 +30,30 @@ jobs:
     - name: Build
       run:  dotnet build --configuration $env:config --no-restore
 
-
     - name: Set PR Build Number
       id: PRNUMBER
       if: ${{ github.event_name == 'pull_request' }}
       uses: kkak10/pr-number-action@v1.3
 
-    - name: Test title for Markdown output
+    - name: Create variables for titles
       run: |
-            if (${{ github.event_name == 'pull_request' }}) {
-              echo "title=Test Run for PR #${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-              echo "file_name=TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-            }else{
-              echo "title=Test Run ${{github.run_number}}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-              echo "file_name=TestReport.${{github.run_number}}.md" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-            }
+            echo "title=Test Run ${{github.run_number}}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+            echo "file_name=TestReport.${{github.run_number}}.md" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
     - name: Test
-      run: dotnet test --no-restore --no-build --configuration $env:config --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
+      run: dotnet test --no-restore --no-build --configuration $env:config --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.LOGFILE}};Title=${{env.LOGTITLE}};"
+      env:
+        LOGTITLE: "Test Run ${{github.run_number}}"
+        LOGFILE: "TestReport.${{github.run_number}}.md"
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
+      env:
+        LOGFILE: "TestReport.${{github.run_number}}.md"
       if: ${{always()}}
       with:
         name: 'Test Run'
-        path: ${{github.workspace}}/${{env.file_name}}
+        path: ${{github.workspace}}/${{env.LOGFILE}}
 
     - name: comment PR
       uses: machine-learning-apps/pr-comment@master
