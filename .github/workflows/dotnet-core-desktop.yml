@@ -37,8 +37,13 @@ jobs:
 
     - name: Create variables for titles
       run: |
-            echo "title=Test Run ${{github.run_number}}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-            echo "file_name=TestReport.${{github.run_number}}.md" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+            if (${{ github.event_name == 'pull_request' }}) {
+              echo 'title=Test Run for PR #${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})' >> $env:GITHUB_ENV
+              echo 'file_name=TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md' >> $env:GITHUB_ENV
+            }else{
+              echo 'title=Test Run ${{github.run_number}}' >> $env:GITHUB_ENV
+              echo 'file_name=TestReport.${{github.run_number}}.md' >> $env:GITHUB_ENV
+            }
 
     - name: Test
       run: dotnet test --no-restore --no-build --configuration $env:config --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.LOGFILE}};Title=${{env.LOGTITLE}};"
