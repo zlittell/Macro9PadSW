@@ -39,11 +39,11 @@ jobs:
     - name: Test title for Markdown output
       run: |
             if (${{ github.event_name == 'pull_request' }}) {
-              echo "title=Test Run for PR #${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})" >> $GITHUB_ENV
-              echo "file_name=TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md" >> $GITHUB_ENV
+              echo "title=Test Run for PR #${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+              echo "file_name=TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
             }else{
-              echo "title=Test Run ${{github.run_number}}" >> $GITHUB_ENV
-              echo "file_name=TestReport.${{github.run_number}}.md" >> $GITHUB_ENV
+              echo "title=Test Run ${{github.run_number}}" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+              echo "file_name=TestReport.${{github.run_number}}.md" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
             }
 
     - name: Test
