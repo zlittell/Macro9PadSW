@@ -37,7 +37,7 @@ jobs:
       uses: kkak10/pr-number-action@v1.3
 
     - name: Test title for Markdown output
-      runs: |
+      run: |
             if ${{ github.event_name == 'pull_request' }}
             then
               echo "::set-env name=title::Test Run for PR #${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
