@@ -28,9 +28,9 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run:  dotnet build --configuration $config --no-restore
+      run:  dotnet build --configuration $env:config --no-restore
 
 
       #run tests
     - name: Test
-      run: dotnet test --no-restore --configuration $config
+      run: dotnet test --no-restore --configuration $env:config
