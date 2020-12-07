@@ -12,7 +12,7 @@ jobs:
     runs-on: windows-latest
 
     env:
-      config: 'Release'
+      config: Release
 
     steps:
     - name: Checkout
